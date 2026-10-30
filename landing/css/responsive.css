@@ -10,11 +10,13 @@
   .scenario-panel { grid-template-columns: 1fr; }
   .calc__grid { grid-template-columns: 1fr; }
   .form { grid-template-columns: 1fr; }
+  .contacts-corporate { grid-template-columns: 1fr; }
   .demo__grid { grid-template-columns: 1fr; }
   .metrics { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 768px) {
+  .btn { white-space: normal; }
   .hero__title { font-size: clamp(2rem, 8vw, 3rem); }
   .section__title { font-size: clamp(1.5rem, 6vw, 2.2rem); }
   .timeline { flex-direction: column; }
@@ -28,8 +30,9 @@
     flex-direction: column;
     position: absolute;
     top: 64px;
-    right: 16px;
-    left: 16px;
+    right: 12px;
+    left: 12px;
+    max-width: calc(100vw - 24px);
     background: #FFFFFF;
     padding: 16px;
     border-radius: 12px;
