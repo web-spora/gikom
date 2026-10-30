@@ -40,7 +40,8 @@
     box-shadow: var(--shadow-lg);
     z-index: 99;
   }
-  .nav.is-open a { padding: 10px 12px; border-radius: 8px; }
+  .nav.is-open a { padding: 10px 12px; border-radius: 8px; color: var(--color-text); }
+  .nav.is-open a.nav__cta { color: #fff; }
   .nav.is-open a:hover { background: var(--color-bg-alt); }
   .burger { display: flex; }
   .site-footer__grid { grid-template-columns: 1fr; }
