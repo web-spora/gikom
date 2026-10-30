@@ -13,7 +13,7 @@
   // Demo data (explicitly marked as demonstration)
   const order = [
     { cell: "B-03", qty: 3, label: "A-104" },
-    { cell: "D-07", qty: 2, label: "A-211" },
+    { cell: "D-05", qty: 2, label: "A-211" },
     { cell: "A-02", qty: 5, label: "B-055" },
     { cell: "C-05", qty: 1, label: "C-012" },
   ];

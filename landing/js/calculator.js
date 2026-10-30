@@ -2,8 +2,8 @@
 (function () {
   "use strict";
 
-  const form = document.getElementById("calc-form");
-  if (!form) return;
+  const pickersInput = document.getElementById("calc-pickers");
+  if (!pickersInput) return;
 
   const fields = ["pickers", "hourly", "hours", "time", "orders", "errors", "gain"];
   const $ = (id) => document.getElementById(id);

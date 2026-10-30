@@ -13,7 +13,8 @@
   const reached = new Set();
   window.addEventListener("scroll", () => {
     const h = document.documentElement;
-    const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+    const total = h.scrollHeight - h.clientHeight;
+    const pct = total > 0 ? (h.scrollTop / total) * 100 : 0;
     milestones.forEach((m) => {
       if (pct >= m && !reached.has(m)) {
         reached.add(m);

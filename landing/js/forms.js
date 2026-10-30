@@ -16,7 +16,8 @@
         if (wrap) wrap.classList.remove("is-error");
       }
     });
-    const email = form.querySelector('input[type="email"]');
+    const contact = form.querySelector('input[name="contact"]');
+    const email = contact && contact.value.includes("@") ? contact : null;
     if (email && email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
       ok = false;
       const wrap = email.closest(".form__field");
