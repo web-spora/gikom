@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GIKOM — визуальная система управления складской комплектацией</title>
+  <meta name="description" content="GIKOM — визуальная система управления складской комплектацией. Цифровые задания и подсказки помогают быстрее находить товары, собирать заказы и снижать зависимость от опыта сотрудников.">
+  <meta name="keywords" content="автоматизация складской комплектации, система Pick-to-Light, визуальная комплектация заказов, автоматизация сборки заказов на складе, оборудование для комплектации">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="GIKOM — визуальная система управления складской комплектацией">
+  <meta property="og:description" content="Визуальная система управления складской комплектацией. Система думает за сотрудника.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+</head>
+<body>
+  <div class="progress" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="#top" class="logo">
+        <img src="assets/images/logo-gikom.png" alt="GIKOM" class="logo__img">
+        <span>GIKOM</span>
+      </a>
+      <nav class="nav">
+        <a href="#problem">Проблема</a>
+        <a href="#solution">Решение</a>
+        <a href="#demo">Демо</a>
+        <a href="#benefits">Преимущества</a>
+        <a href="#scenarios">Сценарии</a>
+        <a href="#calc">Калькулятор</a>
+        <a href="#contact" class="nav__cta" data-cta="header-cta">Рассчитать эффект</a>
+      </nav>
+      <button class="burger" aria-label="Меню">☰</button>
+    </div>
+  </header>
+
+  <main id="top">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="hero">
+    <div class="glow" style="width:500px;height:500px;background:rgba(61,220,151,0.15);top:-100px;right:-100px;"></div>
+    <div class="container">
+      <div class="hero__grid">
+        <div>
+          <div class="hero__kicker">ГИКОМ × Визуальная комплектация</div>
+          <h1 class="hero__title">
+            <span class="word">Комплектация</span>
+            <span class="word">склада,</span>
+            <span class="word">в&nbsp;которой</span>
+            <span class="word accent">система</span>
+            <span class="word">думает</span>
+            <span class="word">за&nbsp;сотрудника</span>
+          </h1>
+          <p class="hero__lead">
+            Визуальные подсказки помогают быстрее находить товары, выполнять задания по маршруту
+            и сокращать зависимость складских процессов от опыта сотрудников.
+          </p>
+          <div class="hero__actions">
+            <a href="#calc" class="btn btn--primary btn--lg" data-cta="hero-calc">
+              Рассчитать эффект для моего склада <span class="btn__arrow">→</span>
+            </a>
+            <a href="#demo" class="btn btn--ghost btn--lg" data-cta="hero-demo">
+              Посмотреть, как это работает
+            </a>
+          </div>
+          <p class="hero__note">Визуальная система управления складской комплектацией</p>
+        </div>
+        <div class="scene floating">
+          <div class="rack" id="hero-rack">
+            <!-- 4x5 rack -->
+          </div>
+          <div class="scene__task">
+            <div class="scene__task-row"><span>Задание</span><b>Заказ № 1042</b></div>
+            <div class="scene__task-row"><span>Товар</span><b>Позиция A-104</b></div>
+            <div class="scene__task-row"><span>Ячейка</span><b>B-03</b></div>
+            <div class="scene__task-row"><span>Количество</span><b>3 шт.</b></div>
+            <div class="scene__status"><span class="scene__dot"></span>Ожидает выполнения</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROBLEM ================= -->
+  <section class="section" id="problem">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="section__kicker">Проблема</span>
+        <h2 class="section__title">Сколько времени сотрудники тратят не на сборку, а на поиск?</h2>
+        <p class="section__lead">На большинстве складов комплектация по-прежнему строится на памяти и опыте сотрудников. Это создаёт скрытые потери, которые растут вместе с объёмами.</p>
+      </div>
+      <div class="grid grid--2 stagger">
+        <div class="problem-card">
+          <div class="problem-card__num">01</div>
+          <h3 class="problem-card__title">Долгое обучение</h3>
+          <p class="problem-card__text">Новичку приходится изучать ассортимент, расположение товаров и правила комплектации. Знания опытных сотрудников становятся критически важными.</p>
+        </div>
+        <div class="problem-card">
+          <div class="problem-card__num">02</div>
+          <h3 class="problem-card__title">Лишние перемещения</h3>
+          <p class="problem-card__text">Поиск нужных позиций и неэффективная последовательность отбора увеличивают продолжительность сборки и утомляют сотрудников.</p>
+        </div>
+        <div class="problem-card">
+          <div class="problem-card__num">03</div>
+          <h3 class="problem-card__title">Ошибки комплектации</h3>
+          <p class="problem-card__text">Неправильный отбор может привести к пересортице, недовозу, повторной сборке и задержкам отгрузки.</p>
+        </div>
+        <div class="problem-card">
+          <div class="problem-card__num">04</div>
+          <h3 class="problem-card__title">Зависимость от опыта</h3>
+          <p class="problem-card__text">Знания опытных сотрудников становятся критически важными для стабильной работы склада. Руководителю трудно обеспечить одинаковую скорость разных смен.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SOLUTION ================= -->
+  <section class="section section--alt" id="solution">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="section__kicker">Решение</span>
+        <h2 class="section__title">Переносим складскую логику в систему</h2>
+        <p class="section__lead">GIKOM помогает организовать процесс комплектации: система формирует задания, определяет последовательность действий и направляет сотрудника к нужным товарам.</p>
+      </div>
+      <div class="solution">
+        <div class="solution__step reveal">
+          <div class="solution__icon">📋</div>
+          <div class="solution__num">01</div>
+          <h3 class="solution__title">Заказ</h3>
+          <p class="solution__text">Система получает задание на комплектацию из учётной системы.</p>
+        </div>
+        <div class="solution__step reveal">
+          <div class="solution__icon">🗺️</div>
+          <div class="solution__num">02</div>
+          <h3 class="solution__title">Маршрут</h3>
+          <p class="solution__text">Определяет оптимальную последовательность отбора и строит маршрут по карте склада.</p>
+        </div>
+        <div class="solution__step reveal">
+          <div class="solution__icon">💡</div>
+          <div class="solution__num">03</div>
+          <h3 class="solution__title">Подсказка</h3>
+          <p class="solution__text">Направляет сотрудника к нужной ячейке с помощью визуальных подсказок и световой индикации.</p>
+        </div>
+        <div class="solution__step reveal">
+          <div class="solution__icon">✅</div>
+          <div class="solution__num">04</div>
+          <h3 class="solution__title">Выполнение</h3>
+          <p class="solution__text">Сотрудник отбирает товар и подтверждает операцию. Система фиксирует выполнение.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= DEMO ================= -->
+  <section class="section section--dark" id="demo">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="section__kicker">Интерактивная демонстрация</span>
+        <h2 class="section__title section__title--on-dark">Посмотрите, как сотрудник собирает заказ по подсказкам системы</h2>
+        <p class="section__lead section__lead--on-dark">Демонстрация работает локально, без подключения к настоящей складской системе. Все данные — демонстрационные.</p>
+      </div>
+      <div class="demo reveal">
+        <div class="demo__grid">
+          <div>
+            <div class="demo__rack" id="demo-rack">
+              <!-- cells generated by JS -->
+            </div>
+            <div class="demo__progress"><div class="demo__progress-bar" id="demo-progress"></div></div>
+            <div class="demo__status" id="demo-status">Получено задание. Нажмите «Следующий шаг».</div>
+          </div>
+          <div class="demo__info">
+            <div class="demo__card">
+              <div class="demo__card-title">Текущее задание (демо)</div>
+              <div class="demo__card-row"><span>Заказ</span><b id="demo-order">Заказ № 1048</b></div>
+              <div class="demo__card-row"><span>Товар</span><b id="demo-item">A-104</b></div>
+              <div class="demo__card-row"><span>Ячейка</span><b id="demo-cell">B-03</b></div>
+              <div class="demo__card-row"><span>Количество</span><b id="demo-qty">3 шт.</b></div>
+              <div class="demo__card-row"><span>Статус</span><b id="demo-status-val">Ожидает выполнения</b></div>
+            </div>
+            <div class="demo__actions">
+              <button class="demo__btn" id="demo-next">Следующий шаг</button>
+              <button class="demo__btn demo__btn--secondary" id="demo-reset">Сбросить</button>
+            </div>
+            <p style="font-size:var(--fs-xs);opacity:0.6;line-height:var(--lh-loose);">
+              Шаг 1 — получение задания, Шаг 2 — подсветка ячейки, Шаг 3 — отбор, Шаг 4 — подтверждение, Шаг 5 — следующая позиция.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= BENEFITS ================= -->
+  <section class="section" id="benefits">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="section__kicker">Преимущества</span>
+        <h2 class="section__title">Что меняется в работе склада</h2>
+      </div>
+      <div class="grid" style="grid-template-columns: 2fr 1fr 1fr; grid-template-rows: auto auto; gap: var(--space-4);">
+        <div class="benefit--big reveal">
+          <h3>Быстрее адаптация</h3>
+          <p>Сотрудник следует визуальным подсказкам вместо самостоятельного изучения всей складской логики. Стандартизированный процесс помогает организовать работу сотрудников с разным уровнем подготовки.</p>
+        </div>
+        <div class="benefit--small reveal">
+          <h4>Меньше времени на поиск</h4>
+          <p>Система помогает определить нужную ячейку и последовательность действий.</p>
+        </div>
+        <div class="benefit--small reveal">
+          <h4>Более управляемая комплектация</h4>
+          <p>Процесс строится на цифровых заданиях, а выполнение операций можно отслеживать в рамках реализованного функционала.</p>
+        </div>
+        <div class="benefit--wide reveal" style="grid-column: 1 / -1;">
+          <div>
+            <h4 style="font-size:var(--fs-lg);margin-bottom:var(--space-2);">Меньше зависимости от опыта</h4>
+            <p>Стандартизированный процесс помогает организовать работу сотрудников с разным уровнем подготовки и снижает зависимость от знаний конкретных людей.</p>
+          </div>
+          <img src="assets/images/benefits.png" alt="Преимущества системы отбора GIKOM" loading="lazy">
+        </div>
+      </div>
+
+      <!-- Language block -->
+      <div class="lang-block reveal" style="margin-top:var(--space-6);">
+        <div class="grid grid--2" style="align-items:center;">
+          <div>
+            <h3 style="font-size:var(--fs-lg);margin-bottom:var(--space-2);">Складская работа без зависимости от сложных текстовых инструкций</h3>
+            <p style="color:var(--color-text-muted);line-height:var(--lh-loose);margin-bottom:var(--space-3);">Визуальные задания помогают сотруднику ориентироваться в процессе комплектации, даже если он недостаточно хорошо владеет русским языком.</p>
+            <ul style="display:flex;flex-direction:column;gap:var(--space-2);">
+              <li style="display:flex;gap:var(--space-2);align-items:flex-start;"><span style="color:var(--color-accent);font-weight:700;">→</span> меньше необходимости запоминать адреса</li>
+              <li style="display:flex;gap:var(--space-2);align-items:flex-start;"><span style="color:var(--color-accent);font-weight:700;">→</span> понятная последовательность действий</li>
+              <li style="display:flex;gap:var(--space-2);align-items:flex-start;"><span style="color:var(--color-accent);font-weight:700;">→</span> потенциально более простая адаптация новых сотрудников</li>
+            </ul>
+            <p style="font-size:var(--fs-xs);color:var(--color-text-muted);margin-top:var(--space-3);font-style:italic;">Фактическая понятность интерфейса зависит от реализации, а требования к пониманию техники безопасности сохраняются.</p>
+          </div>
+          <div class="mock-ui">
+            <div class="mock-ui__row"><span>Заказ</span><b>DEMO-1042</b></div>
+            <div class="mock-ui__row"><span>Ячейка</span><b>B-12-04</b></div>
+            <div class="mock-ui__row"><span>Количество</span><b>3 шт.</b></div>
+            <div class="mock-ui__row"><span>Статус</span><b>Ожидает подтверждения</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SCENARIOS ================= -->
+  <section class="section section--alt" id="scenarios">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="section__kicker">Сценарии применения</span>
+        <h2 class="section__title">Подходит для складов с разными задачами комплектации</h2>
+        <p class="section__lead">Не нужно утверждать, что решение одинаково подходит всем складам. Задача блока — показать возможные сценарии и мотивировать оценить собственный процесс.</p>
+      </div>
+      <div class="scenario-tabs">
+        <button class="scenario-tab is-active" data-scenario="dist">Дистрибуция</button>
+        <button class="scenario-tab" data-scenario="prod">Производство</button>
+        <button class="scenario-tab" data-scenario="ecom">E-commerce</button>
+        <button class="scenario-tab" data-scenario="turnover">Высокая текучесть</button>
+      </div>
+      <div class="scenario-panel" id="scenario-panel"></div>
+    </div>
+  </section>
+
+  <!-- ================= CALCULATOR ================= -->
+  <section class="section" id="calc">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="section__kicker">Экономический эффект</span>
+        <h2 class="section__title section__title--on-dark">Рассчитайте потенциальный эффект для своего склада</h2>
+        <p class="section__lead section__lead--on-dark">Предполагаемый прирост производительности — это пользовательское допущение, а не гарантированный результат. Расчёт должен учитывать фактическую загрузку сотрудников и структуру заказов.</p>
+      </div>
+      <div class="calc reveal">
+        <div class="calc__grid">
+          <div class="calc__inputs">
+            <div class="calc__field">
+              <label for="calc-pickers">Количество комплектовщиков</label>
+              <input type="number" id="calc-pickers" value="6" min="1">
+            </div>
+            <div class="calc__field">
+              <label for="calc-hourly">Средняя стоимость часа работы, ₽</label>
+              <input type="number" id="calc-hourly" value="400" min="0">
+            </div>
+            <div class="calc__field">
+              <label for="calc-hours">Рабочих часов в месяц</label>
+              <input type="number" id="calc-hours" value="168" min="0">
+            </div>
+            <div class="calc__field">
+              <label for="calc-time">Среднее время комплектации заказа, мин</label>
+              <input type="number" id="calc-time" value="12" min="0">
+            </div>
+            <div class="calc__field">
+              <label for="calc-orders">Количество заказов в месяц</label>
+              <input type="number" id="calc-orders" value="1200" min="0">
+            </div>
+            <div class="calc__field">
+              <label for="calc-errors">Затраты на ошибки и повторные операции, ₽/мес</label>
+              <input type="number" id="calc-errors" value="30000" min="0">
+            </div>
+            <div class="calc__field">
+              <label for="calc-gain">Предполагаемое изменение производительности, %</label>
+              <input type="number" id="calc-gain" value="15" min="0" max="60">
+            </div>
+          </div>
+          <div class="calc__results">
+            <div class="calc__result">
+              <span class="calc__result-label">Текущие затраты труда на комплектацию</span>
+              <span class="calc__result-value" id="res-current-labor">—</span>
+            </div>
+            <div class="calc__result">
+              <span class="calc__result-label">Стоимость рабочего времени комплектовщиков</span>
+              <span class="calc__result-value" id="res-current-pickers">—</span>
+            </div>
+            <div class="calc__result">
+              <span class="calc__result-label">Потенциально высвобождаемое время</span>
+              <span class="calc__result-value" id="res-saved-hours">—</span>
+            </div>
+            <div class="calc__result">
+              <span class="calc__result-label">Сценарный потенциал экономии</span>
+              <span class="calc__result-value" id="res-potential">—</span>
+            </div>
+            <div class="calc__result">
+              <span class="calc__result-label">Затраты на ошибки и повторные операции</span>
+              <span class="calc__result-value" id="res-errors">—</span>
+            </div>
+            <p class="calc__note">Если стоимость внедрения неизвестна, точный срок окупаемости не рассчитывается. Предлагается запросить коммерческий расчёт у ГИКОМ.</p>
+            <button class="btn btn--primary" style="width:100%;margin-top:var(--space-3);" id="calc-cta" data-cta="calc-cta">Получить расчёт для моего склада</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= IMPLEMENTATION ================= -->
+  <section class="section" id="implementation">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="section__kicker">Внедрение</span>
+        <h2 class="section__title">От задачи склада до работающего решения</h2>
+        <p class="section__lead">Указанные этапы — предлагаемая схема работы над проектом. Перед публикацией необходимо подтвердить, какие именно работы ГИКОМ выполняет самостоятельно.</p>
+      </div>
+      <div class="timeline reveal">
+        <div class="timeline__item">
+          <div class="timeline__num">01</div>
+          <h3 class="timeline__name">Анализ</h3>
+          <p class="timeline__text">Изучаем текущую комплектацию, инфраструктуру и основные потери времени.</p>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__num">02</div>
+          <h3 class="timeline__name">Проектирование</h3>
+          <p class="timeline__text">Определяем подходящий сценарий применения технологии и необходимое оборудование.</p>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__num">03</div>
+          <h3 class="timeline__name">Подготовка</h3>
+          <p class="timeline__text">Согласуем интеграцию, складскую адресацию и требования к инфраструктуре.</p>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__num">04</div>
+          <h3 class="timeline__name">Запуск</h3>
+          <p class="timeline__text">Настраиваем решение и проверяем работу на выбранном участке.</p>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__num">05</div>
+          <h3 class="timeline__name">Оценка результата</h3>
+          <p class="timeline__text">Сравниваем показатели до и после внедрения и определяем потенциал масштабирования.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= METRICS ================= -->
+  <section class="section section--alt" id="metrics">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="section__kicker">Результат</span>
+        <h2 class="section__title">Результат должен измеряться на вашем складе</h2>
+        <p class="section__lead">Вместо общих обещаний показываем, какие показатели можно оценивать. После появления подтверждённых данных шаблон заменяется реальными цифрами.</p>
+      </div>
+      <div class="metrics reveal">
+        <div class="metric"><div class="metric__value">⏱</div><div class="metric__label">Время сборки заказа</div></div>
+        <div class="metric"><div class="metric__value">📦</div><div class="metric__label">Количество строк заказа в час</div></div>
+        <div class="metric"><div class="metric__value">🎯</div><div class="metric__label">Число ошибок на 1 000 строк</div></div>
+        <div class="metric"><div class="metric__value">👤</div><div class="metric__label">Время адаптации нового сотрудника</div></div>
+        <div class="metric"><div class="metric__value">📊</div><div class="metric__label">Заказов на одного комплектовщика</div></div>
+        <div class="metric"><div class="metric__value">💰</div><div class="metric__label">Затраты на повторные операции</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section__head reveal" style="text-align:center;margin-left:auto;margin-right:auto;">
+        <span class="section__kicker">FAQ</span>
+        <h2 class="section__title">Что важно знать перед внедрением</h2>
+      </div>
+      <div class="faq">
+        <div class="faq__item">
+          <button class="faq__q">С какими складскими системами интегрируется решение? <span class="faq__icon">+</span></button>
+          <div class="faq__a"><p>Ответы основываются на технической документации и согласованных условиях поставки. Конкретные интеграции, протоколы обмена и поддерживаемые модели оборудования необходимо подтвердить до включения в коммерческое предложение.</p></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q">Можно ли использовать существующие стеллажи? <span class="faq__icon">+</span></button>
+          <div class="faq__a"><p>Совместимость с существующим оборудованием склада рассматривается на этапе обследования. Решение может работать поверх существующей инфраструктуры.</p></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q">Как организована работа сотрудников, которые не говорят по-русски? <span class="faq__icon">+</span></button>
+          <div class="faq__a"><p>Визуальные задания помогают сотруднику ориентироваться в процессе комплектации, даже если он недостаточно хорошо владеет русским языком. Фактическая понятность интерфейса зависит от реализации, а требования к пониманию техники безопасности сохраняются.</p></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q">Как подтверждается правильность отбора товара? <span class="faq__icon">+</span></button>
+          <div class="faq__a"><p>Уровень контроля зависит от реализации. Подсветка ячейки сама по себе не гарантирует отсутствие ошибок — необходимо учитывать способы подтверждения отбора.</p></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q">Сколько времени занимает внедрение? <span class="faq__icon">+</span></button>
+          <div class="faq__a"><p>Конкретные сроки и границы ответственности необходимо подтвердить перед публикацией. Этапы: обследование, проектирование, пилот, оценка результата, масштабирование.</p></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q">Нужно ли останавливать склад на время монтажа? <span class="faq__icon">+</span></button>
+          <div class="faq__a"><p>Возможность внедрения без остановки склада рассматривается на этапе проектирования решения и зависит от выбранного сценария.</p></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q">Из чего складывается стоимость решения? <span class="faq__icon">+</span></button>
+          <div class="faq__a"><p>Стоимость складывается из оборудования, ПО, интеграции и сопровождения. Точный расчёт — по запросу после обследования.</p></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q">Как оценить экономический эффект? <span class="faq__icon">+</span></button>
+          <div class="faq__a"><p>Используйте калькулятор на этой странице. Предполагаемый прирост производительности — пользовательское допущение, не гарантированный результат.</p></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q">Можно ли начать с одного участка склада? <span class="faq__icon">+</span></button>
+          <div class="faq__a"><p>Да, возможен старт с одного участка и масштабирование при подтверждённой эффективности.</p></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q">Какое оборудование требуется для работы? <span class="faq__icon">+</span></button>
+          <div class="faq__a"><p>Перечень оборудования, которое подключается к системе, уточняется на этапе обследования.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="section__kicker">Контакты</span>
+        <h2 class="section__title">Посчитаем, какой эффект система может дать вашему складу</h2>
+        <p class="section__lead section__lead--on-dark">Расскажите о текущих процессах комплектации. ГИКОМ поможет определить, где визуальная система управления может быть полезна, и подготовит предложение для вашего склада.</p>
+      </div>
+      <div class="form">
+        <form class="form__fields" id="lead-form" novalidate>
+          <div class="form__row">
+            <div class="form__field">
+              <label for="f-name">Имя</label>
+              <input type="text" id="f-name" name="name" required>
+            </div>
+            <div class="form__field">
+              <label for="f-company">Компания</label>
+              <input type="text" id="f-company" name="company" required>
+            </div>
+          </div>
+          <div class="form__row">
+            <div class="form__field">
+              <label for="f-phone">Рабочий телефон или e-mail</label>
+              <input type="text" id="f-phone" name="contact" required>
+            </div>
+            <div class="form__field">
+              <label for="f-pickers">Количество комплектовщиков</label>
+              <input type="number" id="f-pickers" name="pickers" min="0">
+            </div>
+          </div>
+          <div class="form__field">
+            <label for="f-task">Краткое описание задачи</label>
+            <textarea id="f-task" name="task" rows="4"></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary btn--lg" data-cta="form-submit">Получить консультацию и расчёт</button>
+          <div class="form__success" id="form-success">Спасибо! Мы свяжемся с вами и подготовим расчёт.</div>
+          <p class="form__consent">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</p>
+        </form>
+        <div class="form__side">
+          <h3>Начнём с вашей задачи</h3>
+          <p>Без необходимости сразу принимать решение о внедрении. ГИКОМ поможет оценить потенциал визуальной комплектации для вашего склада.</p>
+          <img src="assets/images/Индустриальный склад с многоуровневыми стеллажами-2.png" alt="Склад" style="border-radius:var(--radius-md);">
+          <div style="font-size:var(--fs-sm);opacity:0.8;">
+            <p>Головной офис · Москва</p>
+            <p>Огородный проезд, д. 16/1, стр. 4</p>
+            <p>8 (499) 110-40-98 · 8 (985) 760-55-85</p>
+            <p>moskva@gikom.ru</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACTS ================= -->
+  <section class="section section--alt" id="offices">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="section__kicker">Контакты</span>
+        <h2 class="section__title">Офисы ГИКОМ</h2>
+        <p class="section__lead">Выберите удобный офис и канал связи.</p>
+      </div>
+      <div class="grid grid--3 reveal">
+        <div class="office-card">
+          <h3 class="office-card__city">Москва</h3>
+          <p class="office-card__addr">г. Москва, Огородный проезд, дом 16/1, строение 4</p>
+          <p class="office-card__email">moskva@gikom.ru</p>
+          <ul class="office-card__phones">
+            <li>8 (499) 110-40-98</li>
+            <li>8 (985) 760-55-85</li>
+            <li>8 (800) 555-28-81</li>
+          </ul>
+          <p class="office-card__hours">Пн–Пт, 9:00–18:00</p>
+        </div>
+        <div class="office-card">
+          <h3 class="office-card__city">Краснодар</h3>
+          <p class="office-card__addr">г. Краснодар, ул. 40 лет Победы, 145</p>
+          <p class="office-card__email">gikom@gikom.ru</p>
+          <ul class="office-card__phones">
+            <li>8 (861) 205-00-98</li>
+            <li>8 (918) 210-38-48</li>
+            <li>8 (800) 555-28-81</li>
+          </ul>
+          <p class="office-card__hours">Пн–Пт, 9:00–18:00</p>
+        </div>
+        <div class="office-card">
+          <h3 class="office-card__city">Казань</h3>
+          <p class="office-card__addr">г. Казань, ул. Шуртыгина, 3, 2 этаж, офис 24</p>
+          <p class="office-card__email">gikom@gikom.ru</p>
+          <ul class="office-card__phones">
+            <li>8 (843) 558-65-64</li>
+            <li>8 (800) 555-28-81</li>
+          </ul>
+          <p class="office-card__hours">Пн–Пт, 9:00–18:00</p>
+        </div>
+        <div class="office-card">
+          <h3 class="office-card__city">Ростов-на-Дону</h3>
+          <p class="office-card__addr">г. Ростов-на-Дону, ул. Орская, 17/1</p>
+          <p class="office-card__email">rostov@gikom.ru</p>
+          <ul class="office-card__phones">
+            <li>8 (863) 322-04-38</li>
+            <li>8 (800) 555-28-81</li>
+          </ul>
+          <p class="office-card__hours">Пн–Пт, 9:00–18:00</p>
+        </div>
+        <div class="office-card">
+          <h3 class="office-card__city">Воронеж</h3>
+          <p class="office-card__addr">г. Воронеж, Ленинский проспект, 172, офис 804</p>
+          <p class="office-card__email">voronezh@gikom.ru</p>
+          <ul class="office-card__phones">
+            <li>8 (473) 300-36-48</li>
+            <li>8 (800) 555-28-81</li>
+          </ul>
+          <p class="office-card__hours">Пн–Пт, 9:00–18:00</p>
+        </div>
+        <div class="office-card">
+          <h3 class="office-card__city">Ставрополь</h3>
+          <p class="office-card__addr">г. Ставрополь, ул. Заводская, 11</p>
+          <p class="office-card__email">gikom@gikom.ru</p>
+          <ul class="office-card__phones">
+            <li>8 (918) 210-38-48</li>
+            <li>8 (800) 555-28-81</li>
+          </ul>
+          <p class="office-card__hours">Пн–Пт, 9:00–18:00</p>
+        </div>
+      </div>
+      <div class="contacts-corporate reveal" style="margin-top:var(--space-6);">
+        <div class="contacts-corporate__block">
+          <h3>Общие корпоративные контакты</h3>
+          <p>Бесплатный телефон по России: <a href="tel:88005552881">8 (800) 555-28-81</a></p>
+          <p>Электронная почта: <a href="mailto:moskva@gikom.ru">moskva@gikom.ru</a></p>
+          <p>Официальный сайт: <a href="https://gikom.ru/" target="_blank" rel="noopener">https://gikom.ru/</a></p>
+        </div>
+        <div class="contacts-corporate__block">
+          <h3>Официальные каналы</h3>
+          <ul class="social-list">
+            <li><a href="https://t.me/GK_GIKOM" target="_blank" rel="noopener">Telegram — ГК ГИКОМ</a></li>
+            <li><a href="https://dzen.ru/gikom" target="_blank" rel="noopener">Дзен</a></li>
+            <li><a href="https://rutube.ru/channel/58065994/videos/" target="_blank" rel="noopener">RuTube</a></li>
+            <li><a href="https://youtube.com/@gikom" target="_blank" rel="noopener">YouTube</a></li>
+            <li><a href="https://www.instagram.com/gk_gikom/" target="_blank" rel="noopener">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div>
+          <a href="#top" class="logo" style="margin-bottom:var(--space-3);">
+            <img src="assets/images/logo-gikom.png" alt="GIKOM" class="logo__img">
+            <span>GIKOM</span>
+          </a>
+          <p>Поставщик складского оборудования и инженерных решений. Инженерный подход к складской логистике.</p>
+        </div>
+        <div>
+          <h4>Разделы</h4>
+          <a href="#problem">Проблема</a>
+          <a href="#solution">Решение</a>
+          <a href="#demo">Демо</a>
+          <a href="#benefits">Преимущества</a>
+        </div>
+        <div>
+          <h4>Ещё</h4>
+          <a href="#scenarios">Сценарии</a>
+          <a href="#calc">Калькулятор</a>
+          <a href="#metrics">Результаты</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div>
+          <h4>Контакты</h4>
+          <p>Москва, Огородный проезд, д. 16/1, стр. 4</p>
+          <p>8 (499) 110-40-98</p>
+          <p>moskva@gikom.ru</p>
+          <p>gikom.ru</p>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <span>© ГИКОМ. Все права защищены.</span>
+        <span>GIKOM — визуальная система управления складской комплектацией</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/analytics.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/picking-demo.js"></script>
+  <script src="js/scenarios.js"></script>
+  <script src="js/calculator.js"></script>
+  <script src="js/faq.js"></script>
+  <script src="js/forms.js"></script>
+
+  <script>
+    // Generate hero rack cells
+    (function () {
+      const rack = document.getElementById("hero-rack");
+      if (!rack) return;
+      for (let r = 0; r < 4; r++) {
+        const row = document.createElement("div");
+        row.className = "rack__row";
+        for (let c = 0; c < 6; c++) {
+          const cell = document.createElement("div");
+          cell.className = "rack__cell";
+          if ((r === 1 && c === 2) || (r === 2 && c === 4)) cell.classList.add("is-lit");
+          row.appendChild(cell);
+        }
+        rack.appendChild(row);
+      }
+    })();
+
+    // Generate demo rack cells (5x4)
+    (function () {
+      const rack = document.getElementById("demo-rack");
+      if (!rack) return;
+      const labels = ["A-01","A-02","A-03","A-04","A-05","B-01","B-02","B-03","B-04","B-05","C-01","C-02","C-03","C-04","C-05","D-01","D-02","D-03","D-04","D-05"];
+      labels.forEach((l, i) => {
+        const cell = document.createElement("div");
+        cell.className = "demo__cell";
+        cell.dataset.cell = l;
+        cell.textContent = l;
+        rack.appendChild(cell);
+      });
+    })();
+  </script>
+</body>
+</html>

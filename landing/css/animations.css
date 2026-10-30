@@ -1,0 +1,55 @@
+/* Animations */
+.fade-in { animation: fadeUp var(--dur-slow) var(--ease) both; }
+
+.stagger > * {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fadeUp var(--dur-slow) var(--ease) forwards;
+}
+
+.stagger > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger > *:nth-child(2) { animation-delay: 0.12s; }
+.stagger > *:nth-child(3) { animation-delay: 0.19s; }
+.stagger > *:nth-child(4) { animation-delay: 0.26s; }
+.stagger > *:nth-child(5) { animation-delay: 0.33s; }
+.stagger > *:nth-child(6) { animation-delay: 0.40s; }
+
+.hero__title .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 0.8s var(--ease) forwards;
+}
+
+.hero__title .word:nth-child(1) { animation-delay: 0.1s; }
+.hero__title .word:nth-child(2) { animation-delay: 0.2s; }
+.hero__title .word:nth-child(3) { animation-delay: 0.3s; }
+.hero__title .word:nth-child(4) { animation-delay: 0.4s; }
+.hero__title .word:nth-child(5) { animation-delay: 0.5s; }
+.hero__title .word:nth-child(6) { animation-delay: 0.6s; }
+
+.floating { animation: float 4s ease-in-out infinite; }
+
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Scroll-driven progress for solution line */
+@supports (animation-timeline: scroll()) {
+  .solution__line {
+    animation: growLine linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+  }
+}
+
+@keyframes growLine {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* Reduced motion already handled in variables.css */

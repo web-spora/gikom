@@ -1,0 +1,94 @@
+/* Design tokens — GIKOM / TakeYours Picking landing (corporate) */
+:root {
+  /* Brand */
+  --color-brand: #97242B;
+  --color-brand-dark: #7A1D22;
+  --color-brand-light: #F2EEEB;
+  --color-gray: #707070;
+
+  /* Corporate palette (light theme) */
+  --color-navy: #FFFFFF;
+  --color-navy-2: #F7F5F3;
+  --color-navy-3: #EFECE8;
+  --color-accent: #97242B;
+  --color-accent-2: #7A1D22;
+  --color-white: #FFFFFF;
+  --color-light: #F7F5F3;
+  --color-text: #1F2328;
+  --color-text-muted: #707070;
+  --color-text-on-dark: #FFFFFF;
+
+  /* Surfaces */
+  --color-bg: #FFFFFF;
+  --color-bg-alt: #F7F5F3;
+  --color-bg-dark: #97242B;
+  --color-card: #FFFFFF;
+  --color-card-dark: #FFFFFF;
+
+  /* Borders */
+  --color-border: rgba(31,35,40,0.12);
+  --color-border-dark: rgba(31,35,40,0.12);
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  /* Spacing (8px base) */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-10: 80px;
+  --space-12: 96px;
+
+  /* Typography */
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Consolas", monospace;
+
+  --fs-xs: clamp(0.75rem, 0.7rem + 0.2vw, 0.85rem);
+  --fs-sm: clamp(0.875rem, 0.8rem + 0.3vw, 1rem);
+  --fs-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --fs-md: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  --fs-lg: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  --fs-xl: clamp(2rem, 1.5rem + 2vw, 3rem);
+  --fs-2xl: clamp(2.5rem, 1.8rem + 3vw, 4.5rem);
+
+  --lh-tight: 1.1;
+  --lh-base: 1.5;
+  --lh-loose: 1.7;
+
+  /* Layout */
+  --container: 1280px;
+  --container-narrow: 960px;
+
+  /* Motion */
+  --dur-fast: 150ms;
+  --dur-base: 250ms;
+  --dur-slow: 400ms;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(31,35,40,0.06);
+  --shadow-md: 0 8px 24px rgba(31,35,40,0.10);
+  --shadow-lg: 0 20px 48px rgba(31,35,40,0.14);
+  --shadow-glow: 0 0 40px rgba(151,36,43,0.20);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-base: 0ms;
+    --dur-slow: 0ms;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
