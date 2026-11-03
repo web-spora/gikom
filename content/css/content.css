@@ -69,6 +69,11 @@ body {
   margin-bottom: 10px;
   font-weight: 700;
 }
+.content__section h3 {
+  font-size: 1.15rem;
+  margin: 14px 0 6px;
+  font-weight: 700;
+}
 .content__section p { margin-bottom: 12px; }
 .content__section ul, .content__section ol {
   padding-left: 22px;
