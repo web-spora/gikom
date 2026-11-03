@@ -1,0 +1,19 @@
+:root {
+  --c-primary: #97242B;
+  --c-primary-dark: #6F1B20;
+  --c-grey: #707070;
+  --c-grey-light: #F5F2F2;
+  --c-grey-line: #D9D9D9;
+  --c-bg: #FFFFFF;
+  --c-text: #222222;
+
+  --font: 'Bahnschrift', 'DIN Alternate', 'Segoe UI', system-ui, sans-serif;
+
+  --container: 1200px;
+  --gutter: 24px;
+  --section-y: 112px;
+
+  --skew: -30deg;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --header-h: 72px;
+}

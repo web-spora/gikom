@@ -1,0 +1,8 @@
+﻿.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+.vscode/
+.idea/
+# Шрифт не публикуется: лицензия на веб-использование не подтверждена.
+assets/fonts/bahnschrift.ttf

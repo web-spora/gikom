@@ -1,0 +1,96 @@
+/* Декор опирается на диагональную геометрию логотипа ГИКОМ. */
+
+.stripes {
+  position: absolute;
+  pointer-events: none;
+  background: repeating-linear-gradient(125deg, var(--c-grey) 0 2px, transparent 2px 9px);
+  opacity: 0.22;
+}
+
+.stripes--edge {
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 14px;
+}
+
+.stripes--corner {
+  right: 0;
+  top: 0;
+  width: 160px;
+  height: 160px;
+  clip-path: polygon(100% 0, 100% 100%, 0 0);
+  opacity: 0.32;
+}
+
+.stripes--block {
+  position: relative;
+  height: 100%;
+  min-height: 120px;
+  opacity: 0.3;
+}
+
+.accent-bar {
+  display: block;
+  width: 56px;
+  height: 4px;
+  background: var(--c-primary);
+  transform: skewX(var(--skew));
+}
+
+.accent-bar--light {
+  background: #fff;
+}
+
+.clip-diag {
+  clip-path: polygon(0 0, 100% 0, 100% 86%, 92% 100%, 0 100%);
+}
+
+.clip-diag-left {
+  clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.hero-cut {
+  clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.num-badge {
+  display: inline-grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  background: var(--c-primary);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 70% 100%, 0 100%);
+}
+
+.section-mark {
+  position: absolute;
+  right: var(--gutter);
+  top: 40px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--c-grey);
+}
+
+.diamond {
+  flex: 0 0 auto;
+  width: 11px;
+  height: 11px;
+  margin-top: 0.55em;
+  background: var(--c-primary);
+  transform: rotate(45deg);
+}
+
+.diamond--grey {
+  background: var(--c-grey);
+}
+
+.rule {
+  height: 1px;
+  background: var(--c-grey-line);
+  border: 0;
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ГИКОМ — Автоматизированные складские системы СКАС</title>
+  <meta name="description" content="СКАС: роботизированное хранение контейнеров и паллет на базе штабелеров. ГИКОМ.">
+  <meta name="theme-color" content="#97242B">
+  <link rel="icon" href="assets/logo/gikom-logo.png">
+  <link rel="preload" href="assets/fonts/bahnschrift.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/decor.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <a class="sr-only" href="#main">Перейти к содержанию</a>
+
+  <header class="site-header" id="header">
+    <div class="container site-header__inner">
+      <a class="brand" href="#top" aria-label="ГИКОМ — на главную">
+        <img id="brand-logo" alt="ГИКОМ" width="150" height="40">
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Меню" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav" id="nav" aria-label="Основная навигация"></nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Секции формируются из data/data.js (см. js/render.js) -->
+    <noscript>
+      <p class="container">Для просмотра страницы включите JavaScript. Контакты ГИКОМ: 8 (800) 555-28-81, moskva@gikom.ru, <a href="https://gikom.ru/">gikom.ru</a>.</p>
+    </noscript>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <span>ГИКОМ · Складские решения / 2026</span>
+      <span>© ГИКОМ. Все права защищены.</span>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр фото" hidden>
+    <button class="lightbox__close" type="button" aria-label="Закрыть">×</button>
+    <img id="lightbox-img" alt="">
+  </div>
+
+  <script src="data/data.js" defer></script>
+  <script src="js/render.js" defer></script>
+  <script src="js/nav.js" defer></script>
+  <script src="js/reveal.js" defer></script>
+  <script src="js/charts.js" defer></script>
+  <script src="js/gallery.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
