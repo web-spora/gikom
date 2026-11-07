@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Аудит Яндекс Метрики — ГИКОМ</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="logo" href="../../index.html">
+        <img src="../img/logo.png" alt="ГИКОМ">
+        <span>Маркетинговый аудит</span>
+      </a>
+      <div class="header-actions">
+        <a class="btn" href="../../index.html">← Дашборд</a>
+      </div>
+    </div>
+  </header>
+  <main id="main" class="container" style="padding-top:32px;padding-bottom:48px">
+    <span class="eyebrow">Канал · Яндекс Метрика</span>
+    <h1 style="font-size:30px;font-weight:900;margin-bottom:8px">Аудит веб-аналитики сайта gikom.ru</h1>
+    <p style="color:var(--muted);margin-bottom:24px">Период: 01.11.2025–31.10.2026 · 6 выгрузок · 44 221 визит</p>
+
+    <div class="grid grid--4" style="margin-bottom:28px">
+      <div class="kpi"><div class="kpi__value">44 221</div><div class="kpi__label">визитов</div></div>
+      <div class="kpi"><div class="kpi__value">36 008</div><div class="kpi__label">посетителей</div></div>
+      <div class="kpi"><div class="kpi__value">71 828</div><div class="kpi__label">просмотров</div></div>
+      <div class="kpi"><div class="kpi__value">45,6%</div><div class="kpi__label">отказов</div></div>
+    </div>
+
+    <div class="grid grid--4" style="margin-bottom:28px">
+      <div class="kpi"><div class="kpi__value">1,62</div><div class="kpi__label">глубина</div></div>
+      <div class="kpi"><div class="kpi__value">00:52</div><div class="kpi__label">время на сайте</div></div>
+      <div class="kpi"><div class="kpi__value">61,3%</div><div class="kpi__label">мобильный трафик</div></div>
+      <div class="kpi"><div class="kpi__value">20 989</div><div class="kpi__label">визитов с ybaip=1</div></div>
+    </div>
+
+    <div class="section-head"><h2>Ключевые находки</h2></div>
+    <div class="grid grid--2">
+      <div class="card bn-card bn-card--critical">
+        <span class="chip chip--critical">Критично</span>
+        <h3 class="card__title" style="margin-top:8px">Цели не подтверждены</h3>
+        <div class="bn-card__metric">5 целей на страницах входа = 0, при этом 6 002 достижения любой цели</div>
+        <div class="bn-card__why">Нельзя отличить реальные заявки от микроцелей.</div>
+        <div class="bn-card__action"><strong>Действие:</strong> проверить цели, формы, телефонию; сверить с Битрикс24.</div>
+      </div>
+      <div class="card bn-card bn-card--critical">
+        <span class="chip chip--critical">Критично</span>
+        <h3 class="card__title" style="margin-top:8px">Провал в марте 2026</h3>
+        <div class="bn-card__metric">Визиты 5 806 → 1 867 (−67,8%)</div>
+        <div class="bn-card__why">Совпадение по времени с падением расхода Директа на 99,93%.</div>
+        <div class="bn-card__action"><strong>Действие:</strong> проверить журнал изменений, баланс, модерацию, счётчик.</div>
+      </div>
+      <div class="card bn-card bn-card--high">
+        <span class="chip chip--high">Высокий</span>
+        <h3 class="card__title" style="margin-top:8px">Мобильное качество</h3>
+        <div class="bn-card__metric">iPhone: 8 519 визитов, отказы 67,6%, глубина 1,26, 28 сек</div>
+        <div class="bn-card__why">Основной тип устройства показывает худшее вовлечение.</div>
+        <div class="bn-card__action"><strong>Действие:</strong> мобильный UX-аудит каталога и карточек.</div>
+      </div>
+      <div class="card bn-card bn-card--high">
+        <span class="chip chip--high">Высокий</span>
+        <h3 class="card__title" style="margin-top:8px">Зависимость от РСЯ</h3>
+        <div class="bn-card__metric">20 012 визитов (45% трафика); отказы 60,9%; глубина 1,18</div>
+        <div class="bn-card__why">Четверть платного трафика показывает низкое качество.</div>
+        <div class="bn-card__action"><strong>Действие:</strong> сегментировать площадки, проверить качество.</div>
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-top:40px"><h2>Источники трафика</h2></div>
+    <div class="card">
+      <table style="width:100%;border-collapse:collapse;font-size:14px">
+        <thead><tr style="text-align:left;border-bottom:1px solid var(--border)">
+          <th style="padding:8px 4px">Источник</th><th style="padding:8px 4px">Визиты</th><th style="padding:8px 4px">Доля</th><th style="padding:8px 4px">Комментарий</th>
+        </tr></thead>
+        <tbody>
+          <tr><td style="padding:8px 4px">Переходы по рекламе</td><td>25 270</td><td>57,4%</td><td>РСЯ 20 012 визитов, отказы 60,9%</td></tr>
+          <tr><td style="padding:8px 4px">Поисковые системы</td><td>7 705</td><td>17,5%</td><td>Значительная часть фраз скрыта</td></tr>
+          <tr><td style="padding:8px 4px">Прямые заходы</td><td>6 744</td><td>15,3%</td><td>Часть — неразмеченный возвратный трафик</td></tr>
+          <tr><td style="padding:8px 4px">Ссылки на сайтах</td><td>2 766</td><td>6,3%</td><td>—</td></tr>
+          <tr><td style="padding:8px 4px">Внутренние переходы</td><td>1 055</td><td>2,4%</td><td>—</td></tr>
+          <tr><td style="padding:8px 4px">Рекомендательные</td><td>469</td><td>1,1%</td><td>—</td></tr>
+          <tr><td style="padding:8px 4px">Соцсети</td><td>23</td><td>0,1%</td><td>—</td></tr>
+          <tr><td style="padding:8px 4px">Мессенджеры</td><td>11</td><td>0,0%</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-head" style="margin-top:40px"><h2>Помесячная динамика визитов</h2></div>
+    <div class="card">
+      <table style="width:100%;border-collapse:collapse;font-size:13px">
+        <thead><tr style="text-align:left;border-bottom:1px solid var(--border)">
+          <th style="padding:6px 4px">Месяц</th><th style="padding:6px 4px">Визиты</th><th style="padding:6px 4px">Посетители</th><th style="padding:6px 4px">Изменение</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>2025-11</td><td>8 329</td><td>7 775</td><td>—</td></tr>
+          <tr><td>2025-12</td><td>10 730</td><td>9 887</td><td>+28,8%</td></tr>
+          <tr><td>2026-01</td><td>6 379</td><td>5 934</td><td>−40,5%</td></tr>
+          <tr><td>2026-02</td><td>5 806</td><td>5 286</td><td>−9,0%</td></tr>
+          <tr style="background:var(--critical-soft)"><td>2026-03</td><td>1 867</td><td>1 758</td><td>−67,8%</td></tr>
+          <tr><td>2026-04</td><td>1 630</td><td>1 545</td><td>−12,7%</td></tr>
+          <tr><td>2026-05</td><td>1 765</td><td>1 651</td><td>+8,3%</td></tr>
+          <tr><td>2026-06</td><td>1 459</td><td>1 347</td><td>−17,3%</td></tr>
+          <tr><td>2026-07</td><td>1 339</td><td>1 242</td><td>−8,2%</td></tr>
+          <tr><td>2026-08</td><td>1 493</td><td>1 400</td><td>+11,5%</td></tr>
+          <tr><td>2026-09</td><td>1 667</td><td>1 519</td><td>+11,7%</td></tr>
+          <tr><td>2026-10</td><td>1 757</td><td>1 633</td><td>+5,4%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-head" style="margin-top:40px"><h2>Рекомендации</h2></div>
+    <div class="card">
+      <ul class="card__list">
+        <li>Проверить цели в каждом счётчике, типы и ID; протестировать формы/звонки/виджеты; сверить с Битрикс24.</li>
+        <li>Сверить месячные расходы и показы Директа; историю изменений сайта/счётчика; доступность доменов.</li>
+        <li>Проверить мобильную скорость, первый экран, каталог, карточки, формы, кликабельность телефона и мессенджеров.</li>
+        <li>Установить источник параметра ybaip=1; проверить каноникал и индексацию.</li>
+        <li>Перевыгрузить отчёты с одинаковым периодом, атрибуцией, фильтрами и счётчиком.</li>
+      </ul>
+    </div>
+
+    <div class="section-head" style="margin-top:40px"><h2>Пробелы данных</h2></div>
+    <div class="grid grid--2">
+      <div class="gap"><div class="gap__title">Несколько сайтов/счётчиков</div><div class="gap__row">Нужен реестр доменов и ID счётчиков; выгрузки по каждому сайту.</div></div>
+      <div class="gap"><div class="gap__title">Рекламные расходы</div><div class="gap__row">В Метрике нет затрат — нужен экспорт Директа.</div></div>
+      <div class="gap"><div class="gap__title">Подтверждённые заявки</div><div class="gap__row">Цели не сопоставлены с реальными обращениями — нужен Битрикс24.</div></div>
+      <div class="gap"><div class="gap__title">SEO</div><div class="gap__row">Нужны Яндекс Вебмастер и Google Search Console.</div></div>
+    </div>
+
+    <p style="margin-top:24px;font-size:12px;color:var(--muted)">Источник: data/metrika/audit-metrika.xlsx</p>
+  </main>
+</body>
+</html>

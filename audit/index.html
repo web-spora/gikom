@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Маркетинговый аудит ГИКОМ — дашборд</title>
+  <meta name="description" content="Дашборд маркетингового аудита ГИКОМ: каналы, сайт, реклама, узкие места и точки роста.">
+  <link rel="icon" href="dashboard/img/logo.png">
+  <link rel="stylesheet" href="dashboard/css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">К содержанию</a>
+  <div class="progress" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="logo" href="#top">
+        <img src="dashboard/img/logo.png" alt="ГИКОМ">
+        <span>Маркетинговый аудит</span>
+      </a>
+      <nav class="nav" aria-label="Разделы">
+        <a href="#overview">Обзор</a>
+        <a href="#channels">Каналы</a>
+        <a href="#bottlenecks">Узкие места</a>
+        <a href="#growth">Точки роста</a>
+        <a href="#dynamics">Динамика</a>
+        <a href="#roadmap">План</a>
+        <a href="#gaps">Пробелы</a>
+      </nav>
+      <div class="header-actions">
+        <button class="btn btn--ghost" id="theme-toggle" type="button">Тёмная</button>
+        <button class="btn" id="print-btn" type="button">PDF</button>
+        <button class="burger" type="button" aria-label="Меню" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <nav class="mobile-nav" aria-label="Мобильное меню">
+      <a href="#overview">Обзор</a>
+      <a href="#channels">Каналы</a>
+      <a href="#bottlenecks">Узкие места</a>
+      <a href="#growth">Точки роста</a>
+      <a href="#dynamics">Динамика</a>
+      <a href="#roadmap">План</a>
+      <a href="#gaps">Пробелы</a>
+      <a href="#sources">Источники</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="container hero__grid">
+        <div>
+          <span class="eyebrow">ГИКОМ · Маркетинговый аудит</span>
+          <h1>Маркетинг получает поток.<br><span class="accent">Но не доказывает результат.</span></h1>
+          <p class="hero__lead">
+            Сводный аудит 7 каналов за 01.11.2025–31.10.2026: сайт, Яндекс Директ,
+            2ГИС, Яндекс Бизнес, RuTube, Дзен, YouTube. Ниже — узкие места, точки роста
+            и план действий на 90 дней.
+          </p>
+          <div class="hero__meta">
+            <span><strong>Период:</strong> 01.11.2025 — 31.10.2026</span>
+            <span><strong>Каналов:</strong> 7</span>
+            <span><strong>Визитов:</strong> 44 221</span>
+            <span><strong>Расход Директа:</strong> 1 151 582 ₽</span>
+          </div>
+          <p class="hero__meta" style="font-size:12px">
+            Ограничение: это аудит каналов и веб-аналитики, не аудит продаж — Битрикс24, выручка и маржа не предоставлены.
+          </p>
+        </div>
+        <div>
+          <div class="kpi-grid" id="kpi-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSIGHT -->
+    <section id="overview">
+      <div class="container">
+        <div class="insight reveal">
+          <h3>Главный вывод</h3>
+          <p>
+            Маркетинг ГИКОМ получает основной измеримый поток на сайт через платную рекламу
+            и поисковый спрос. При этом аналитика не позволяет надёжно отличить реальные заявки
+            от автоматических и микроцелей, а коммерческий результат нигде не связан с CRM.
+          </p>
+          <ul>
+            <li>57,4% визитов приходят из рекламы — зависимость от платного трафика высокая.</li>
+            <li>5 целей на страницах входа дают ноль, при этом отчёт источников показывает 6 002 достижения любой цели.</li>
+            <li>В марте 2026 визиты упали на 67,8%, расход Директа — на 99,93%.</li>
+          </ul>
+        </div>
+
+        <div style="margin-top:32px" class="reveal">
+          <div class="section-head">
+            <span class="eyebrow">Воронка</span>
+            <h2>Где теряется измеримость</h2>
+            <p>Первые два шага измерены. Последние два — нет: Битрикс24 не предоставлен.</p>
+          </div>
+          <div class="funnel" id="funnel"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHANNELS -->
+    <section id="channels">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Каналы</span>
+          <h2>Сводная карта 7 каналов</h2>
+          <p>Периоды и состав метрик различаются — сравнение по абсолютам некорректно.
+            Полнота данных: средняя / низкая.</p>
+        </div>
+        <div class="grid grid--3" id="channels-grid"></div>
+      </div>
+    </section>
+
+    <!-- BOTTLENECKS -->
+    <section id="bottlenecks">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Диагноз</span>
+          <h2>Узкие места</h2>
+          <p>Выявлены по предоставленным выгрузкам. Причины аномалий требуют проверки.</p>
+          <div style="margin-top:12px">
+            <label for="bn-filter" style="font-size:13px;color:var(--muted);margin-right:8px">Фильтр:</label>
+            <select id="bn-filter" class="btn" style="padding:6px 10px">
+              <option value="all">Все</option>
+              <option value="critical">Критично</option>
+              <option value="high">Высокий</option>
+              <option value="medium">Средний</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid grid--2" id="bn-grid"></div>
+      </div>
+    </section>
+
+    <!-- GROWTH -->
+    <section id="growth">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Рост</span>
+          <h2>Точки роста</h2>
+          <p>Действия, которые можно начать в ближайшие 2–4 недели без новых бюджетов.</p>
+        </div>
+        <div class="grid grid--3" id="growth-grid"></div>
+      </div>
+    </section>
+
+    <!-- DYNAMICS -->
+    <section id="dynamics">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Динамика</span>
+          <h2>Визиты и расход Директа по месяцам</h2>
+          <p>Март 2026 — обвал: визиты −67,8%, расход −99,93%. Август–октябрь 2026 по Директу в выгрузке отсутствуют.</p>
+        </div>
+        <div class="chart reveal">
+          <div class="chart__title">Визиты (Метрика) и расход (Директ)</div>
+          <div class="chart__note">Левая ось — визиты, правая — тысячи рублей. Красный бар — март 2026.</div>
+          <svg id="chart-monthly" viewBox="0 0 720 260" role="img" aria-label="График визитов и расхода по месяцам"></svg>
+          <div class="chart__legend">
+            <span><i style="background:#97242B;opacity:.75"></i> Визиты</span>
+            <span><i style="background:#B26A00"></i> Расход Директа</span>
+            <span><i style="background:#B3261E"></i> Март 2026</span>
+          </div>
+        </div>
+
+        <div class="grid grid--2" style="margin-top:24px">
+          <div class="chart reveal">
+            <div class="chart__title">Источники трафика</div>
+            <div class="chart__note">База долей — 44 044 визита. Метрика, 01.11.2025–31.10.2026.</div>
+            <svg id="chart-sources" viewBox="0 0 720 220" role="img" aria-label="Источники трафика"></svg>
+          </div>
+          <div class="chart reveal">
+            <div class="chart__title">Устройства</div>
+            <div class="chart__note">61,3% визитов со смартфонов. Отказы iPhone — 67,6%.</div>
+            <svg id="chart-devices" viewBox="0 0 460 240" role="img" aria-label="Распределение по устройствам"></svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROADMAP -->
+    <section id="roadmap">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">План</span>
+          <h2>Дорожная карта на 90 дней</h2>
+          <p>Приоритеты из сводного аудита. Рекомендации не предполагают автоматическое отключение кампаний.</p>
+        </div>
+        <div class="roadmap" id="roadmap-grid"></div>
+      </div>
+    </section>
+
+    <!-- GAPS -->
+    <section id="gaps">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Границы</span>
+          <h2>Пробелы данных и что запросить</h2>
+          <p>Без этих данных нельзя посчитать CPL, CAC, ROMI и вклад каналов в продажи.</p>
+        </div>
+        <div class="grid grid--2" id="gaps-grid"></div>
+      </div>
+    </section>
+
+    <!-- SOURCES -->
+    <section id="sources">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Источники</span>
+          <h2>Исходные файлы аудита</h2>
+          <p>Все цифры на этой странице взяты из перечисленных файлов. Сверка с первоисточником — обязательна.</p>
+        </div>
+        <ul class="source-list" id="files-list"></ul>
+        <div style="margin-top:24px" class="reveal">
+          <p style="font-size:13px;color:var(--muted)">
+            Подробные аудиты по каждому каналу — в папке <code>audit/</code>.
+            Детальные страницы: 
+            <a href="dashboard/channels/metrika.html">Метрика</a> ·
+            <a href="dashboard/channels/direct.html">Директ</a> ·
+            <a href="dashboard/channels/2gis.html">2ГИС</a> ·
+            <a href="dashboard/channels/yandex-biz.html">Яндекс Бизнес</a> ·
+            <a href="dashboard/channels/rutube.html">RuTube</a> ·
+            <a href="dashboard/channels/dzen.html">Дзен</a> ·
+            <a href="dashboard/channels/youtube.html">YouTube</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© ГИКОМ. Маркетинговый аудит, подготовлен на основе предоставленных выгрузок. Версия от 07.11.2026.</p>
+      <p style="margin-top:6px">
+        <a href="README.md">README</a> ·
+        <a href="landing/">Лендинг GIKOM</a> ·
+        <a href="content/">Контент для соцсетей</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="dashboard/js/data.js"></script>
+  <script src="dashboard/js/app.js"></script>
+</body>
+</html>
+

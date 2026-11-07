@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Аудит Дзена — ГИКОМ</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="logo" href="../../index.html"><img src="../img/logo.png" alt="ГИКОМ"><span>Маркетинговый аудит</span></a>
+      <div class="header-actions"><a class="btn" href="../../index.html">← Дашборд</a></div>
+    </div>
+  </header>
+  <main id="main" class="container" style="padding-top:32px;padding-bottom:48px">
+    <span class="eyebrow">Канал · Дзен</span>
+    <h1 style="font-size:30px;font-weight:900;margin-bottom:8px">Аудит канала Дзен</h1>
+    <p style="color:var(--muted);margin-bottom:24px">Режим «Всё время», ~11.12.2024–06.11.2026 · скриншот аудитории</p>
+
+    <div class="section-head"><h2>Источники переходов</h2></div>
+    <div class="card">
+      <table style="width:100%;border-collapse:collapse;font-size:14px">
+        <thead><tr style="text-align:left;border-bottom:1px solid var(--border)">
+          <th style="padding:8px 4px">Источник</th><th style="padding:8px 4px">Доля</th>
+        </tr></thead>
+        <tbody>
+          <tr><td style="padding:8px 4px">Лента Дзена</td><td>44,3%</td></tr>
+          <tr><td style="padding:8px 4px">Другие источники</td><td>44,3%</td></tr>
+          <tr><td style="padding:8px 4px">Поисковые системы</td><td>10,1%</td></tr>
+          <tr><td style="padding:8px 4px">Лента Mail.ru</td><td>1,3%</td></tr>
+          <tr><td style="padding:8px 4px">Рекомендации</td><td>0%</td></tr>
+          <tr><td style="padding:8px 4px">Подписки</td><td>0%</td></tr>
+          <tr><td style="padding:8px 4px">Поиск в Дзене</td><td>0%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-head" style="margin-top:40px"><h2>Аудитория (по скриншоту)</h2></div>
+    <div class="grid grid--2">
+      <div class="card">
+        <div class="card__title">География</div>
+        <ul class="card__list">
+          <li>Краснодар — 62,96%</li>
+          <li>Москва — 12,96%</li>
+          <li>Ногинск — 11,11%</li>
+          <li>7 городов — по 1,85%</li>
+        </ul>
+        <p style="font-size:12px;color:var(--muted);margin-top:8px">Похоже на малую выборку (~54 наблюдения).</p>
+      </div>
+      <div class="card">
+        <div class="card__title">Устройства и ОС</div>
+        <ul class="card__list">
+          <li>ПК — 55%; смартфоны — 45%</li>
+          <li>Android — 45%; macOS — 29%; Windows — 26%</li>
+        </ul>
+        <p style="font-size:12px;color:var(--muted);margin-top:8px">Пол и возраст на скриншоте показаны как 100% — артефакт малой выборки.</p>
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-top:40px"><h2>Ключевые проблемы</h2></div>
+    <div class="grid grid--2">
+      <div class="card bn-card bn-card--high"><span class="chip chip--high">Высокий</span><h3 class="card__title" style="margin-top:8px">Режим «Всё время»</h3><div class="bn-card__metric">Нет годового среза 01.11.2025–31.10.2026</div><div class="bn-card__why">Нельзя сопоставить с другими каналами на одном периоде.</div><div class="bn-card__action"><strong>Действие:</strong> снять годовой срез и помесячные показатели.</div></div>
+      <div class="card bn-card bn-card--high"><span class="chip chip--high">Высокий</span><h3 class="card__title" style="margin-top:8px">«Другие источники» 44,3%</h3><div class="bn-card__metric">Почти половина переходов не атрибутирована</div><div class="bn-card__why">Нельзя понять, откуда реально приходит аудитория.</div><div class="bn-card__action"><strong>Действие:</strong> проверить источник и маркировать внешние ссылки UTM.</div></div>
+      <div class="card bn-card bn-card--medium"><span class="chip chip--medium">Средний</span><h3 class="card__title" style="margin-top:8px">Нет статистики публикаций</h3><div class="bn-card__metric">Не видны показатели отдельных статей и видео</div><div class="bn-card__why">Нельзя определить лучшие темы и форматы.</div><div class="bn-card__action"><strong>Действие:</strong> выгрузить вкладку «Публикации».</div></div>
+      <div class="card bn-card bn-card--medium"><span class="chip chip--medium">Средний</span><h3 class="card__title" style="margin-top:8px">Нет UTM/CRM</h3><div class="bn-card__metric">Нет переходов на сайт, заявок, лидов, сделок</div><div class="bn-card__why">Нельзя рассчитать CPL, CAC, ROMI.</div><div class="bn-card__action"><strong>Действие:</strong> маркировать ссылки и фиксировать в CRM.</div></div>
+    </div>
+
+    <div class="section-head" style="margin-top:40px"><h2>Что сделать</h2></div>
+    <div class="card">
+      <ul class="card__list">
+        <li>Снять отдельный годовой срез 01.11.2025–31.10.2026 и помесячные показатели.</li>
+        <li>Выгрузить вкладку «Публикации» с показателями каждой статьи.</li>
+        <li>Проверить источник «Другие источники» и маркировать внешние ссылки UTM.</li>
+        <li>Проверить географическую релевантность аудитории.</li>
+        <li>Не сужать контент под женщин 45–54 на основании этого скриншота.</li>
+        <li>Проверить статьи и посадочные на ПК и смартфонах.</li>
+        <li>Использовать четверг как гипотезу для теста времени публикаций.</li>
+      </ul>
+    </div>
+
+    <p style="margin-top:24px;font-size:12px;color:var(--muted)">Источник: data/dzen/audit-dzen.xlsx</p>
+  </main>
+</body>
+</html>
