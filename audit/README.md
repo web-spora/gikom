@@ -10,7 +10,8 @@ audit/
 ├── README.md                  — этот файл
 ├── dashboard/                 — UI дашборда
 │   ├── css/styles.css
-│   ├── js/app.js              — логика и графики
+│   ├── js/charts.js           — SVG-графики (bars, hbars, donut, grouped, line)
+│   ├── js/app.js              — логика и рендер дашборда
 │   ├── js/data.js             — данные (единственный источник правды)
 │   ├── img/logo.png           — логотип ГИКОМ
 │   └── channels/              — детальные аудиты по каналам (7 страниц)

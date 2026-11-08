@@ -26,6 +26,41 @@
       <div class="kpi"><div class="kpi__value">6 436</div><div class="kpi__label">поисков в октябре</div></div>
     </div>
 
+    <div class="section-head" style="margin-top:40px">
+      <h2>Визуализация</h2>
+      <p style="color:var(--muted);font-size:14px;max-width:760px">Интерес к сфере, показы и позиция карточки по месяцам. Наведите курсор на элементы — появятся точные значения.</p>
+    </div>
+    <div class="viz-grid">
+      <div class="chart chart--wide">
+        <div class="chart__head"><div>
+          <div class="chart__title">Поиски в сфере по месяцам</div>
+          <div class="chart__note">Октябрь 2026 выделен: 6 436 поисков против 1 088 в сентябре (+491,5%). Ноябрь 2026 — неполный месяц.</div>
+        </div></div>
+        <svg id="gis-searches" viewBox="0 0 900 320" role="img" aria-label="Поиски в сфере по месяцам"></svg>
+        <div class="chart__legend">
+          <span><i class="lg--visits"></i> Поиски в сфере</span>
+          <span><i class="lg--crash"></i> Октябрь 2026</span>
+        </div>
+        <div class="chart__foot">Источник: data/2gis/audit-2gis.xlsx</div>
+      </div>
+      <div class="chart">
+        <div class="chart__head"><div>
+          <div class="chart__title">Показы карточки</div>
+          <div class="chart__note">Октябрь: 182 показа (+85,7% к сентябрю). Ноябрь 2026 — 61 показ, месяц неполный.</div>
+        </div></div>
+        <svg id="gis-shows" viewBox="0 0 620 300" role="img" aria-label="Показы карточки"></svg>
+        <div class="chart__foot">Источник: data/2gis/audit-2gis.xlsx</div>
+      </div>
+      <div class="chart">
+        <div class="chart__head"><div>
+          <div class="chart__title">Позиция в выдаче</div>
+          <div class="chart__note">Чем выше линия, тем лучше позиция. Лучший результат — 4-е место в октябре 2026; в декабре 2025 — 31-е.</div>
+        </div></div>
+        <svg id="gis-position" viewBox="0 0 620 300" role="img" aria-label="Позиция в выдаче"></svg>
+        <div class="chart__foot">Источник: data/2gis/audit-2gis.xlsx</div>
+      </div>
+    </div>
+
     <div class="section-head"><h2>Помесячная динамика</h2></div>
     <div class="card">
       <table style="width:100%;border-collapse:collapse;font-size:13px">
@@ -79,5 +114,43 @@
 
     <p style="margin-top:24px;font-size:12px;color:var(--muted)">Источник: data/2gis/audit-2gis.xlsx</p>
   </main>
+
+  <script src="../js/charts.js"></script>
+  <script>
+    (function () {
+      var months = ["ноя 25", "дек 25", "янв 26", "фев 26", "мар 26", "апр 26", "май 26", "июн 26", "июл 26", "авг 26", "сен 26", "окт 26", "ноя 26"];
+
+      GIKOM.bars(document.getElementById("gis-searches"), {
+        labels: months,
+        values: [887, 895, 648, 801, 1210, 1583, 1255, 1259, 1349, 1363, 1088, 6436, 1315],
+        highlight: 11,
+        yTitle: "поиски",
+        xTitle: "месяц",
+        width: 900,
+        height: 320
+      });
+
+      GIKOM.bars(document.getElementById("gis-shows"), {
+        labels: months,
+        values: [65, 55, 52, 75, 90, 107, 84, 96, 80, 75, 98, 182, 61],
+        highlight: 11,
+        yTitle: "показы",
+        width: 620,
+        height: 300,
+        barMax: 24
+      });
+
+      GIKOM.line(document.getElementById("gis-position"), {
+        labels: months,
+        values: [22, 31, 15, 10, 16, 9, 16, 23, 16, 16, 13, 4, 16],
+        invert: true,
+        min: 1,
+        max: 35,
+        yTitle: "позиция",
+        width: 620,
+        height: 300
+      });
+    })();
+  </script>
 </body>
 </html>

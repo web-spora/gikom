@@ -32,6 +32,41 @@
       <div class="kpi"><div class="kpi__value">5,61%</div><div class="kpi__label">CR</div></div>
     </div>
 
+    <div class="section-head" style="margin-top:40px">
+      <h2>Визуализация</h2>
+      <p style="color:var(--muted);font-size:14px;max-width:760px">Расход по месяцам, структура «Поиск / Сети» и вклад кампаний. Наведите курсор на элементы — появятся точные значения.</p>
+    </div>
+    <div class="viz-grid">
+      <div class="chart chart--wide">
+        <div class="chart__head"><div>
+          <div class="chart__title">Расход по месяцам</div>
+          <div class="chart__note">Март 2026 выделен: 89,90 ₽ и 14 кликов против 126 224 ₽ и 5 475 кликов в феврале. Август–октябрь 2026 в выгрузке отсутствуют.</div>
+        </div></div>
+        <svg id="dr-spend" viewBox="0 0 900 320" role="img" aria-label="Расход Директа по месяцам"></svg>
+        <div class="chart__legend">
+          <span><i class="lg--spend"></i> Расход, ₽</span>
+          <span><i class="lg--crash"></i> Март 2026</span>
+        </div>
+        <div class="chart__foot">Источник: data/direct/audit-direct.xlsx</div>
+      </div>
+      <div class="chart">
+        <div class="chart__head"><div>
+          <div class="chart__title">Поиск и Сети</div>
+          <div class="chart__note">Расход 1 135 558 ₽ по отчёту «Площадки». Поиск даёт 86,9% бюджета, Сети — 13,1%, но больше кликов и конверсий.</div>
+        </div></div>
+        <svg id="dr-net" viewBox="0 0 620 300" role="img" aria-label="Поиск и Сети"></svg>
+        <div class="chart__foot">Источник: data/direct/audit-direct.xlsx</div>
+      </div>
+      <div class="chart">
+        <div class="chart__head"><div>
+          <div class="chart__title">Расход по кампаниям</div>
+          <div class="chart__note">Доля от 1 151 582 ₽. В подписи — конверсии и CPA; конверсии не равны подтверждённым заявкам.</div>
+        </div></div>
+        <svg id="dr-campaigns" viewBox="0 0 620 400" role="img" aria-label="Расход по кампаниям"></svg>
+        <div class="chart__foot">Источник: data/direct/audit-direct.xlsx</div>
+      </div>
+    </div>
+
     <div class="section-head"><h2>Поиск vs Сети</h2></div>
     <div class="card">
       <table style="width:100%;border-collapse:collapse;font-size:14px">
@@ -105,5 +140,42 @@
 
     <p style="margin-top:24px;font-size:12px;color:var(--muted)">Источник: data/direct/audit-direct.xlsx</p>
   </main>
+
+  <script src="../js/charts.js"></script>
+  <script>
+    (function () {
+      GIKOM.bars(document.getElementById("dr-spend"), {
+        labels: ["ноя 25", "дек 25", "янв 26", "фев 26", "мар 26", "апр 26", "май 26", "июн 26", "июл 26"],
+        values: [308758, 268878, 276633, 126224, 89.9, 41983, 129013, 0, 4.54],
+        highlight: 4,
+        yTitle: "расход, ₽",
+        xTitle: "месяц",
+        width: 900,
+        height: 320
+      });
+
+      GIKOM.donut(document.getElementById("dr-net"), {
+        width: 620, height: 300, cx: 150, cy: 150, r: 92, inner: 58,
+        centerValue: "1 135 558", centerLabel: "₽",
+        rows: [
+          { label: "Поиск", value: 987114, note: "888 конверсий", color: "#97242B" },
+          { label: "Сети", value: 148444, note: "795 конверсий", color: "#1F5FBF" }
+        ]
+      });
+
+      GIKOM.hbars(document.getElementById("dr-campaigns"), {
+        width: 620, rowH: 50, padL: 250, padR: 150,
+        rows: [
+          { label: "Стеллажи — Поиск 2025", sub: "213 конверсий · CPA 2 072,58 ₽", value: 441460, valueLabel: "441 460 ₽ · 38,3%", opacity: 0.95 },
+          { label: "Комплексное оснащение — Поиск 2025", sub: "108 конверсий · CPA 1 743,57 ₽", value: 188306, valueLabel: "188 306 ₽ · 16,4%", opacity: 0.8 },
+          { label: "ЕПК Сети — Стеллажи", sub: "835 конверсий · CPA 181,94 ₽", value: 151921, valueLabel: "151 921 ₽ · 13,2%", opacity: 0.7 },
+          { label: "Стеллажи — Поиск (РК)", sub: "115 конверсий · CPA 1 170,13 ₽", value: 134565, valueLabel: "134 565 ₽ · 11,7%", opacity: 0.6 },
+          { label: "Прочие кампании", sub: "остаток бюджета", value: 135515, valueLabel: "135 515 ₽ · 11,8%", opacity: 0.4 },
+          { label: "Металлическая мебель — Поиск", sub: "0 конверсий", value: 89615, valueLabel: "89 615 ₽ · 7,8%", opacity: 0.5 },
+          { label: "Китайская металлическая мебель", sub: "359 конверсий · CPA 28,41 ₽", value: 10200, valueLabel: "10 200 ₽ · 0,9%", opacity: 0.32 }
+        ]
+      });
+    })();
+  </script>
 </body>
 </html>

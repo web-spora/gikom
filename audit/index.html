@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Маркетинговый аудит ГИКОМ — дашборд</title>
-  <meta name="description" content="Дашборд маркетингового аудита ГИКОМ: каналы, сайт, реклама, узкие места и точки роста.">
+  <meta name="description" content="Дашборд маркетингового аудита ГИКОМ: визуализация каналов, сайта, рекламы, узкие места, проблемы и план действий.">
   <link rel="icon" href="dashboard/img/logo.png">
   <link rel="stylesheet" href="dashboard/css/styles.css">
 </head>
@@ -19,28 +19,28 @@
         <span>Маркетинговый аудит</span>
       </a>
       <nav class="nav" aria-label="Разделы">
+        <a href="#visuals">Визуализация</a>
         <a href="#overview">Обзор</a>
         <a href="#channels">Каналы</a>
         <a href="#bottlenecks">Узкие места</a>
-        <a href="#growth">Точки роста</a>
-        <a href="#dynamics">Динамика</a>
+        <a href="#problems">Проблемы</a>
         <a href="#roadmap">План</a>
         <a href="#gaps">Пробелы</a>
       </nav>
       <div class="header-actions">
-        <button class="btn btn--ghost" id="theme-toggle" type="button">Тёмная</button>
         <button class="btn" id="print-btn" type="button">PDF</button>
-        <button class="burger" type="button" aria-label="Меню" aria-expanded="false">
+        <button class="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="mobile-nav">
           <span></span><span></span><span></span>
         </button>
       </div>
     </div>
-    <nav class="mobile-nav" aria-label="Мобильное меню">
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Мобильное меню">
+      <a href="#visuals">Визуализация</a>
       <a href="#overview">Обзор</a>
       <a href="#channels">Каналы</a>
       <a href="#bottlenecks">Узкие места</a>
+      <a href="#problems">Проблемы</a>
       <a href="#growth">Точки роста</a>
-      <a href="#dynamics">Динамика</a>
       <a href="#roadmap">План</a>
       <a href="#gaps">Пробелы</a>
       <a href="#sources">Источники</a>
@@ -56,8 +56,8 @@
           <h1>Маркетинг получает поток.<br><span class="accent">Но не доказывает результат.</span></h1>
           <p class="hero__lead">
             Сводный аудит 7 каналов за 01.11.2025–31.10.2026: сайт, Яндекс Директ,
-            2ГИС, Яндекс Бизнес, RuTube, Дзен, YouTube. Ниже — узкие места, точки роста
-            и план действий на 90 дней.
+            2ГИС, Яндекс Бизнес, RuTube, Дзен, YouTube. Ниже — визуализация данных,
+            узкие места, проблемы и план действий на 90 дней.
           </p>
           <div class="hero__meta">
             <span><strong>Период:</strong> 01.11.2025 — 31.10.2026</span>
@@ -71,6 +71,100 @@
         </div>
         <div>
           <div class="kpi-grid" id="kpi-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISUALS -->
+    <section id="visuals">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Визуализация</span>
+          <h2>Картина аудита в цифрах</h2>
+          <p>Динамика, структура трафика, устройства, расходы и воронка. Все значения — из выгрузок
+            Метрики и Директа; периоды и единицы измерения указаны в подписях к каждому графику.</p>
+        </div>
+
+        <div class="viz-grid">
+          <div class="chart chart--wide reveal">
+            <div class="chart__head">
+              <div>
+                <div class="chart__title">Визиты на сайт и расход Яндекс Директа по месяцам</div>
+                <div class="chart__note">
+                  Столбцы — визиты (левая ось), линия — расход Директа (правая ось, тыс. ₽).
+                  Март 2026 выделен: визиты −67,8%, расход 89,90 ₽ (−99,93%). Август–октябрь 2026:
+                  строк Директа в выгрузке нет.
+                </div>
+              </div>
+            </div>
+            <svg id="chart-monthly" viewBox="0 0 940 360" role="img" aria-label="Визиты и расход Директа по месяцам"></svg>
+            <div class="chart__legend">
+              <span><i class="lg--visits"></i> Визиты (Метрика)</span>
+              <span><i class="lg--spend"></i> Расход Директа, тыс. ₽</span>
+              <span><i class="lg--crash"></i> Март 2026 — провал</span>
+              <span><i class="lg--nodata"></i> Нет данных Директа</span>
+            </div>
+            <div class="chart__foot">Источники: data/metrika/audit-metrika.xlsx · data/direct/audit-direct.xlsx</div>
+          </div>
+
+          <div class="chart reveal">
+            <div class="chart__head">
+              <div>
+                <div class="chart__title">Источники трафика</div>
+                <div class="chart__note">
+                  Визиты и доля от 44 044 визитов. Красным выделены переходы по рекламе —
+                  57,4% всего трафика. Метрика, 01.11.2025–31.10.2026.
+                </div>
+              </div>
+            </div>
+            <svg id="chart-sources" viewBox="0 0 620 380" role="img" aria-label="Источники трафика"></svg>
+            <div class="chart__foot">Источник: data/metrika/audit-metrika.xlsx</div>
+          </div>
+
+          <div class="chart reveal">
+            <div class="chart__head">
+              <div>
+                <div class="chart__title">Устройства и качество вовлечения</div>
+                <div class="chart__note">
+                  Доли визитов, отказы и глубина просмотра. Смартфоны — 61,3% трафика,
+                  но показывают худшее вовлечение.
+                </div>
+              </div>
+            </div>
+            <svg id="chart-devices" viewBox="0 0 620 320" role="img" aria-label="Распределение по устройствам"></svg>
+            <div class="chart__callout">
+              <strong>iPhone:</strong> 8 519 визитов (19,3%) · отказы 67,6% · глубина 1,26 · 28 сек
+            </div>
+            <div class="chart__foot">Источник: data/metrika/audit-metrika.xlsx</div>
+          </div>
+
+          <div class="chart reveal">
+            <div class="chart__head">
+              <div>
+                <div class="chart__title">Расход Директа по кампаниям</div>
+                <div class="chart__note">
+                  Топ-6 кампаний и остаток бюджета. Всего 1 151 582 ₽; в подписи — число
+                  конверсий и CPA. Конверсии не равны подтверждённым заявкам.
+                </div>
+              </div>
+            </div>
+            <svg id="chart-campaigns" viewBox="0 0 620 380" role="img" aria-label="Расход Директа по кампаниям"></svg>
+            <div class="chart__foot">Источник: data/direct/audit-direct.xlsx</div>
+          </div>
+
+          <div class="chart reveal">
+            <div class="chart__head">
+              <div>
+                <div class="chart__title">Воронка: где теряется измеримость</div>
+                <div class="chart__note">
+                  Первые два шага измерены. Подтверждённые заявки и сделки — нет данных:
+                  Битрикс24 не предоставлен.
+                </div>
+              </div>
+            </div>
+            <div class="funnel" id="funnel"></div>
+            <div class="chart__foot">Источник: data/metrika/audit-metrika.xlsx · Битрикс24 не предоставлен</div>
+          </div>
         </div>
       </div>
     </section>
@@ -90,15 +184,6 @@
             <li>5 целей на страницах входа дают ноль, при этом отчёт источников показывает 6 002 достижения любой цели.</li>
             <li>В марте 2026 визиты упали на 67,8%, расход Директа — на 99,93%.</li>
           </ul>
-        </div>
-
-        <div style="margin-top:32px" class="reveal">
-          <div class="section-head">
-            <span class="eyebrow">Воронка</span>
-            <h2>Где теряется измеримость</h2>
-            <p>Первые два шага измерены. Последние два — нет: Битрикс24 не предоставлен.</p>
-          </div>
-          <div class="funnel" id="funnel"></div>
         </div>
       </div>
     </section>
@@ -137,6 +222,19 @@
       </div>
     </section>
 
+    <!-- PROBLEMS -->
+    <section id="problems">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Проблемы</span>
+          <h2>Что мешает росту</h2>
+          <p>Семь проблем, выявленных в ходе аудита. Каждая включена в дорожную карту
+            и подкреплена конкретным действием.</p>
+        </div>
+        <div class="grid grid--2" id="problems-grid"></div>
+      </div>
+    </section>
+
     <!-- GROWTH -->
     <section id="growth">
       <div class="container">
@@ -149,47 +247,14 @@
       </div>
     </section>
 
-    <!-- DYNAMICS -->
-    <section id="dynamics">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Динамика</span>
-          <h2>Визиты и расход Директа по месяцам</h2>
-          <p>Март 2026 — обвал: визиты −67,8%, расход −99,93%. Август–октябрь 2026 по Директу в выгрузке отсутствуют.</p>
-        </div>
-        <div class="chart reveal">
-          <div class="chart__title">Визиты (Метрика) и расход (Директ)</div>
-          <div class="chart__note">Левая ось — визиты, правая — тысячи рублей. Красный бар — март 2026.</div>
-          <svg id="chart-monthly" viewBox="0 0 720 260" role="img" aria-label="График визитов и расхода по месяцам"></svg>
-          <div class="chart__legend">
-            <span><i style="background:#97242B;opacity:.75"></i> Визиты</span>
-            <span><i style="background:#B26A00"></i> Расход Директа</span>
-            <span><i style="background:#B3261E"></i> Март 2026</span>
-          </div>
-        </div>
-
-        <div class="grid grid--2" style="margin-top:24px">
-          <div class="chart reveal">
-            <div class="chart__title">Источники трафика</div>
-            <div class="chart__note">База долей — 44 044 визита. Метрика, 01.11.2025–31.10.2026.</div>
-            <svg id="chart-sources" viewBox="0 0 720 220" role="img" aria-label="Источники трафика"></svg>
-          </div>
-          <div class="chart reveal">
-            <div class="chart__title">Устройства</div>
-            <div class="chart__note">61,3% визитов со смартфонов. Отказы iPhone — 67,6%.</div>
-            <svg id="chart-devices" viewBox="0 0 460 240" role="img" aria-label="Распределение по устройствам"></svg>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ROADMAP -->
     <section id="roadmap">
       <div class="container">
         <div class="section-head reveal">
           <span class="eyebrow">План</span>
           <h2>Дорожная карта на 90 дней</h2>
-          <p>Приоритеты из сводного аудита. Рекомендации не предполагают автоматическое отключение кампаний.</p>
+          <p>Приоритеты из сводного аудита, включая проблемы профилей, контента и разметки.
+            Рекомендации не предполагают автоматическое отключение кампаний.</p>
         </div>
         <div class="roadmap" id="roadmap-grid"></div>
       </div>
@@ -219,7 +284,7 @@
         <div style="margin-top:24px" class="reveal">
           <p style="font-size:13px;color:var(--muted)">
             Подробные аудиты по каждому каналу — в папке <code>audit/</code>.
-            Детальные страницы: 
+            Детальные страницы:
             <a href="dashboard/channels/metrika.html">Метрика</a> ·
             <a href="dashboard/channels/direct.html">Директ</a> ·
             <a href="dashboard/channels/2gis.html">2ГИС</a> ·
@@ -238,14 +303,14 @@
       <p>© ГИКОМ. Маркетинговый аудит, подготовлен на основе предоставленных выгрузок. Версия от 07.11.2026.</p>
       <p style="margin-top:6px">
         <a href="README.md">README</a> ·
-        <a href="landing/">Лендинг GIKOM</a> ·
-        <a href="content/">Контент для соцсетей</a>
+        <a href="../landing/index.html">Лендинг GIKOM</a> ·
+        <a href="../content/index.html">Контент для соцсетей</a>
       </p>
     </div>
   </footer>
 
+  <script src="dashboard/js/charts.js"></script>
   <script src="dashboard/js/data.js"></script>
   <script src="dashboard/js/app.js"></script>
 </body>
 </html>
-

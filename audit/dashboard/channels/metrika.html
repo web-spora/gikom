@@ -38,7 +38,43 @@
       <div class="kpi"><div class="kpi__value">20 989</div><div class="kpi__label">визитов с ybaip=1</div></div>
     </div>
 
-    <div class="section-head"><h2>Ключевые находки</h2></div>
+    <div class="section-head" style="margin-top:40px">
+      <h2>Визуализация</h2>
+      <p style="color:var(--muted);font-size:14px;max-width:760px">Помесячная динамика, структура источников и устройства. Наведите курсор на элементы графика — появятся точные значения.</p>
+    </div>
+    <div class="viz-grid">
+      <div class="chart chart--wide">
+        <div class="chart__head"><div>
+          <div class="chart__title">Визиты по месяцам</div>
+          <div class="chart__note">Март 2026 выделен: 1 867 визитов, −67,8% к февралю. Далее — медленное восстановление до 1 757 визитов в октябре.</div>
+        </div></div>
+        <svg id="mt-visits" viewBox="0 0 900 320" role="img" aria-label="Визиты по месяцам"></svg>
+        <div class="chart__legend">
+          <span><i class="lg--visits"></i> Визиты</span>
+          <span><i class="lg--crash"></i> Март 2026</span>
+        </div>
+        <div class="chart__foot">Источник: data/metrika/audit-metrika.xlsx</div>
+      </div>
+      <div class="chart">
+        <div class="chart__head"><div>
+          <div class="chart__title">Источники трафика</div>
+          <div class="chart__note">Визиты и доля. Реклама даёт 57,4% трафика; соцсети и мессенджеры — менее 0,1%.</div>
+        </div></div>
+        <svg id="mt-sources" viewBox="0 0 620 400" role="img" aria-label="Источники трафика"></svg>
+        <div class="chart__foot">Источник: data/metrika/audit-metrika.xlsx</div>
+      </div>
+      <div class="chart">
+        <div class="chart__head"><div>
+          <div class="chart__title">Устройства</div>
+          <div class="chart__note">Смартфоны — 61,3% визитов. Отказы на смартфонах 53,6%, на ПК — 31,6%.</div>
+        </div></div>
+        <svg id="mt-devices" viewBox="0 0 620 300" role="img" aria-label="Устройства"></svg>
+        <div class="chart__callout"><strong>iPhone:</strong> 8 519 визитов · отказы 67,6% · глубина 1,26 · 28 сек</div>
+        <div class="chart__foot">Источник: data/metrika/audit-metrika.xlsx</div>
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-top:40px"><h2>Ключевые находки</h2></div>
     <div class="grid grid--2">
       <div class="card bn-card bn-card--critical">
         <span class="chip chip--critical">Критично</span>
@@ -133,5 +169,45 @@
 
     <p style="margin-top:24px;font-size:12px;color:var(--muted)">Источник: data/metrika/audit-metrika.xlsx</p>
   </main>
+
+  <script src="../js/charts.js"></script>
+  <script>
+    (function () {
+      var months = ["ноя 25", "дек 25", "янв 26", "фев 26", "мар 26", "апр 26", "май 26", "июн 26", "июл 26", "авг 26", "сен 26", "окт 26"];
+      GIKOM.bars(document.getElementById("mt-visits"), {
+        labels: months,
+        values: [8329, 10730, 6379, 5806, 1867, 1630, 1765, 1459, 1339, 1493, 1667, 1757],
+        highlight: 4,
+        yTitle: "визиты",
+        xTitle: "месяц",
+        width: 900,
+        height: 320
+      });
+
+      GIKOM.hbars(document.getElementById("mt-sources"), {
+        width: 620, rowH: 46, padL: 190, padR: 150,
+        rows: [
+          { label: "Переходы по рекламе", sub: "РСЯ 20 012 визитов", value: 25270, valueLabel: "25 270 · 57,4%", opacity: 0.95 },
+          { label: "Поисковые системы", sub: "часть фраз скрыта", value: 7705, valueLabel: "7 705 · 17,5%", opacity: 0.7 },
+          { label: "Прямые заходы", sub: "часть — неразмеченный трафик", value: 6744, valueLabel: "6 744 · 15,3%", opacity: 0.62 },
+          { label: "Ссылки на сайтах", value: 2766, valueLabel: "2 766 · 6,3%", opacity: 0.5 },
+          { label: "Внутренние переходы", value: 1055, valueLabel: "1 055 · 2,4%", opacity: 0.4 },
+          { label: "Рекомендательные", value: 469, valueLabel: "469 · 1,1%", opacity: 0.32 },
+          { label: "Соцсети", value: 23, valueLabel: "23 · 0,1%", opacity: 0.24 },
+          { label: "Мессенджеры", value: 11, valueLabel: "11 · 0,0%", opacity: 0.2 }
+        ]
+      });
+
+      GIKOM.donut(document.getElementById("mt-devices"), {
+        width: 620, height: 300, cx: 150, cy: 150, r: 92, inner: 58,
+        centerValue: "44 221", centerLabel: "визитов",
+        rows: [
+          { label: "Смартфоны", value: 27109, note: "отказы 53,6% · глубина 1,36", color: "#97242B" },
+          { label: "ПК", value: 16144, note: "отказы 31,6% · глубина 2,08", color: "#1F5FBF" },
+          { label: "Планшеты", value: 968, note: "отказы 55,8% · глубина 1,32", color: "#B26A00" }
+        ]
+      });
+    })();
+  </script>
 </body>
 </html>

@@ -26,6 +26,21 @@
       <div class="kpi"><div class="kpi__value">48,3%</div><div class="kpi__label">реакций «Нравится»</div></div>
     </div>
 
+    <div class="section-head" style="margin-top:40px">
+      <h2>Визуализация</h2>
+      <p style="color:var(--muted);font-size:14px;max-width:760px">Топ-8 видео по просмотрам. Данные частично считаны со скриншотов, поэтому абсолютные значения могут быть неполными.</p>
+    </div>
+    <div class="viz-grid">
+      <div class="chart chart--wide">
+        <div class="chart__head"><div>
+          <div class="chart__title">Просмотры топ-8 видео</div>
+          <div class="chart__note">Всего на канале 399 просмотров и 208 лайков. В подписи — дата публикации и длительность. Топ-8 дают 131 просмотр из 399.</div>
+        </div></div>
+        <svg id="rt-videos" viewBox="0 0 620 400" role="img" aria-label="Просмотры топ-8 видео"></svg>
+        <div class="chart__foot">Источник: data/rutube/audit-rutube.xlsx · данные частично со скриншотов</div>
+      </div>
+    </div>
+
     <div class="section-head"><h2>Топ видео</h2></div>
     <div class="card">
       <table style="width:100%;border-collapse:collapse;font-size:13px">
@@ -66,5 +81,24 @@
 
     <p style="margin-top:24px;font-size:12px;color:var(--muted)">Источник: data/rutube/audit-rutube.xlsx</p>
   </main>
+
+  <script src="../js/charts.js"></script>
+  <script>
+    (function () {
+      GIKOM.hbars(document.getElementById("rt-videos"), {
+        width: 620, rowH: 44, padL: 280, padR: 140,
+        rows: [
+          { label: "Склад компании Все инструменты", sub: "25.03.2025 · 01:38", value: 29, valueLabel: "29", opacity: 0.95 },
+          { label: "Стеллажи для кабельных катушек", sub: "25.03.2025 · 00:09", value: 22, valueLabel: "22", opacity: 0.85 },
+          { label: "Склад компании «Экспресс Кубань»", sub: "24.03.2025 · 02:41", value: 16, valueLabel: "16", opacity: 0.75 },
+          { label: "Склад компании «Меркурий-Черкесск»", sub: "24.03.2025 · 01:15", value: 14, valueLabel: "14", opacity: 0.68 },
+          { label: "Склад компании «Русклимат» (ч. 4)", sub: "25.03.2025 · 00:24", value: 13, valueLabel: "13", opacity: 0.6 },
+          { label: "Бизнес-завтрак: рынок складской недвижимости", sub: "24.03.2025 · 00:41", value: 13, valueLabel: "13", opacity: 0.55 },
+          { label: "Монтаж пола на складе 50 000 м²", sub: "30.06.2026 · 01:01", value: 12, valueLabel: "12", opacity: 0.48 },
+          { label: "Основы безопасности складских стеллажей", sub: "20.06.2025 · 04:27", value: 12, valueLabel: "12", opacity: 0.42 }
+        ]
+      });
+    })();
+  </script>
 </body>
 </html>

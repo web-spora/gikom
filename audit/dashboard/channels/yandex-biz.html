@@ -26,6 +26,34 @@
       <div class="kpi"><div class="kpi__value">203</div><div class="kpi__label">из Навигатора (7,1%)</div></div>
     </div>
 
+    <div class="section-head" style="margin-top:40px">
+      <h2>Визуализация</h2>
+      <p style="color:var(--muted);font-size:14px;max-width:760px">Переходы в профиль по источникам и месяцам. Наведите курсор на элементы — появятся точные значения.</p>
+    </div>
+    <div class="viz-grid">
+      <div class="chart chart--wide">
+        <div class="chart__head"><div>
+          <div class="chart__title">Переходы в профиль по источникам</div>
+          <div class="chart__note">Январь 459 → октябрь 226 (−50,8%). Основное снижение — из Поиска: 369 → 108 (−70,7%). Карты и Навигатор растут.</div>
+        </div></div>
+        <svg id="biz-monthly" viewBox="0 0 900 340" role="img" aria-label="Переходы в профиль по источникам"></svg>
+        <div class="chart__legend">
+          <span><i style="background:#97242B"></i> Поиск</span>
+          <span><i style="background:#1F5FBF"></i> Карты</span>
+          <span><i style="background:#B26A00"></i> Навигатор</span>
+        </div>
+        <div class="chart__foot">Источник: data/business/audit-business.xlsx</div>
+      </div>
+      <div class="chart">
+        <div class="chart__head"><div>
+          <div class="chart__title">Структура переходов</div>
+          <div class="chart__note">Всего 2 860 переходов за 01.01.2026–06.11.2026. Поиск — 66,4%, Карты — 26,5%, Навигатор — 7,1%.</div>
+        </div></div>
+        <svg id="biz-donut" viewBox="0 0 620 300" role="img" aria-label="Структура переходов"></svg>
+        <div class="chart__foot">Источник: data/business/audit-business.xlsx</div>
+      </div>
+    </div>
+
     <div class="section-head"><h2>Помесячная динамика переходов</h2></div>
     <div class="card">
       <table style="width:100%;border-collapse:collapse;font-size:13px">
@@ -76,5 +104,30 @@
 
     <p style="margin-top:24px;font-size:12px;color:var(--muted)">Источник: data/business/audit-business.xlsx</p>
   </main>
+
+  <script src="../js/charts.js"></script>
+  <script>
+    (function () {
+      GIKOM.grouped(document.getElementById("biz-monthly"), {
+        labels: ["янв 26", "фев 26", "мар 26", "апр 26", "май 26", "июн 26", "июл 26", "авг 26", "сен 26", "окт 26"],
+        width: 900, height: 340,
+        series: [
+          { name: "Поиск", color: "#97242B", values: [369, 214, 173, 214, 179, 185, 153, 144, 126, 108] },
+          { name: "Карты", color: "#1F5FBF", values: [81, 100, 61, 37, 64, 64, 63, 104, 78, 94] },
+          { name: "Навигатор", color: "#B26A00", values: [9, 24, 38, 12, 11, 15, 19, 22, 25, 24] }
+        ]
+      });
+
+      GIKOM.donut(document.getElementById("biz-donut"), {
+        width: 620, height: 300, cx: 150, cy: 150, r: 92, inner: 58,
+        centerValue: "2 860", centerLabel: "переходов",
+        rows: [
+          { label: "Поиск", value: 1899, color: "#97242B" },
+          { label: "Карты", value: 758, color: "#1F5FBF" },
+          { label: "Навигатор", value: 203, color: "#B26A00" }
+        ]
+      });
+    })();
+  </script>
 </body>
 </html>

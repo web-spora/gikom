@@ -32,6 +32,37 @@
       <div class="kpi"><div class="kpi__value">97,06%</div><div class="kpi__label">мужчин в аудитории</div></div>
     </div>
 
+    <div class="section-head" style="margin-top:40px">
+      <h2>Визуализация</h2>
+      <p style="color:var(--muted);font-size:14px;max-width:760px">Источники просмотров, устройства и топ контента. Наведите курсор на элементы — появятся точные значения.</p>
+    </div>
+    <div class="viz-grid">
+      <div class="chart chart--wide">
+        <div class="chart__head"><div>
+          <div class="chart__title">Источники просмотров</div>
+          <div class="chart__note">87,9% просмотров — из поиска на YouTube. Рекомендуемые видео дают 42 просмотра (0,34%) — канал почти не получает рекомендательный трафик.</div>
+        </div></div>
+        <svg id="yt-sources" viewBox="0 0 900 360" role="img" aria-label="Источники просмотров YouTube"></svg>
+        <div class="chart__foot">Источник: data/youtube/audit-youtube.xlsx</div>
+      </div>
+      <div class="chart">
+        <div class="chart__head"><div>
+          <div class="chart__title">Устройства</div>
+          <div class="chart__note">Мобильный телефон — 84,9% просмотров, но средняя длительность всего 17 сек. ПК — 52 сек.</div>
+        </div></div>
+        <svg id="yt-devices" viewBox="0 0 620 320" role="img" aria-label="Устройства YouTube"></svg>
+        <div class="chart__foot">Источник: data/youtube/audit-youtube.xlsx</div>
+      </div>
+      <div class="chart">
+        <div class="chart__head"><div>
+          <div class="chart__title">Топ контента</div>
+          <div class="chart__note">Просмотры и CTR значков. Весь топ — Shorts 2022 года; постоянных зрителей — 2 человека.</div>
+        </div></div>
+        <svg id="yt-content" viewBox="0 0 620 340" role="img" aria-label="Топ контента YouTube"></svg>
+        <div class="chart__foot">Источник: data/youtube/audit-youtube.xlsx</div>
+      </div>
+    </div>
+
     <div class="section-head"><h2>Источники просмотров</h2></div>
     <div class="card">
       <table style="width:100%;border-collapse:collapse;font-size:13px">
@@ -110,5 +141,46 @@
 
     <p style="margin-top:24px;font-size:12px;color:var(--muted)">Источник: data/youtube/audit-youtube.xlsx</p>
   </main>
+
+  <script src="../js/charts.js"></script>
+  <script>
+    (function () {
+      GIKOM.hbars(document.getElementById("yt-sources"), {
+        width: 900, rowH: 44, padL: 240, padR: 140,
+        rows: [
+          { label: "Поиск на YouTube", sub: "основной источник", value: 10834, valueLabel: "10 834 · 87,9%", opacity: 0.95 },
+          { label: "Страницы каналов", value: 830, valueLabel: "830 · 6,7%", opacity: 0.6 },
+          { label: "Лента Shorts", value: 247, valueLabel: "247 · 2,0%", opacity: 0.48 },
+          { label: "Функции выбора контента", value: 140, valueLabel: "140 · 1,1%", opacity: 0.4 },
+          { label: "Другие", value: 133, valueLabel: "133 · 1,1%", opacity: 0.36 },
+          { label: "Внешние источники", value: 98, valueLabel: "98 · 0,8%", opacity: 0.3 },
+          { label: "Рекомендуемые видео", sub: "почти нет", value: 42, valueLabel: "42 · 0,3%", opacity: 0.24 }
+        ]
+      });
+
+      GIKOM.donut(document.getElementById("yt-devices"), {
+        width: 620, height: 320, cx: 150, cy: 160, r: 96, inner: 60,
+        centerValue: "12 324", centerLabel: "просмотров",
+        legendRow: 44,
+        rows: [
+          { label: "Мобильный телефон", value: 10464, note: "00:17", color: "#97242B" },
+          { label: "Компьютер", value: 1454, note: "00:52", color: "#1F5FBF" },
+          { label: "Планшет", value: 231, note: "00:22", color: "#B26A00" },
+          { label: "ТВ", value: 171, note: "01:09", color: "#2E7D4F" }
+        ]
+      });
+
+      GIKOM.hbars(document.getElementById("yt-content"), {
+        width: 620, rowH: 54, padL: 260, padR: 130,
+        rows: [
+          { label: "Полное видео автоматизированного склада", sub: "CTR 4,16%", value: 2441, valueLabel: "2 441", opacity: 0.95 },
+          { label: "Набивной стеллаж", sub: "CTR 5,20%", value: 1603, valueLabel: "1 603", opacity: 0.78 },
+          { label: "Мезонинный стеллаж", sub: "CTR 5,53%", value: 990, valueLabel: "990", opacity: 0.64 },
+          { label: "Полочное хранение товаров", sub: "CTR 4,39%", value: 822, valueLabel: "822", opacity: 0.52 },
+          { label: "Стеллажи для кабельных катушек", sub: "CTR 3,31%", value: 620, valueLabel: "620", opacity: 0.4 }
+        ]
+      });
+    })();
+  </script>
 </body>
 </html>

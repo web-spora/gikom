@@ -18,6 +18,15 @@
   };
   const sevClass = { critical: "critical", high: "high", medium: "medium", low: "low" };
   const sevLabel = { critical: "Критично", high: "Высокий", medium: "Средний", low: "Низкий" };
+  const pct = (v) => v.toLocaleString("ru-RU", { maximumFractionDigits: 1 }) + "%";
+  const niceMax = (v) => {
+    if (!v || v <= 0) return 1;
+    const mag = Math.pow(10, Math.floor(Math.log10(v)));
+    const norm = v / mag;
+    const steps = [1, 1.2, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10];
+    const s = steps.find((x) => norm <= x + 1e-9) || 10;
+    return s * mag;
+  };
 
   /* ---------- KPI ---------- */
   function renderKpi() {
@@ -36,20 +45,27 @@
   function renderFunnel() {
     const host = $("#funnel");
     if (!host) return;
-    const max = D.funnel[0].value;
-    host.innerHTML = D.funnel.map((s) => {
+    const first = D.funnel[0].value;
+    host.innerHTML = D.funnel.map((s, i) => {
       const empty = s.value === null;
-      const pct = empty ? 100 : Math.max(4, (s.value / max) * 100);
+      const width = empty ? 100 : Math.max(4, (s.value / first) * 100);
+      const share = empty ? null : (s.value / first) * 100;
+      const prev = i > 0 ? D.funnel[i - 1].value : null;
+      const conv = !empty && prev ? (s.value / prev) * 100 : null;
+      const notes = [];
+      if (share !== null) notes.push(pct(share) + " от визитов");
+      if (conv !== null && i > 0) notes.push(pct(conv) + " от предыдущего шага");
+      if (empty) notes.push(s.note || "нет данных");
       return `
         <div class="funnel__step">
-          <div class="funnel__label">${s.label}</div>
-          <div>
-            <div class="funnel__bar-wrap">
-              <div class="funnel__bar ${empty ? "funnel__bar--empty" : ""}" style="width:${pct}%"></div>
-            </div>
-            ${s.note ? `<div class="funnel__note">${s.note}</div>` : ""}
+          <div class="funnel__top">
+            <span class="funnel__label">${s.label}</span>
+            <span class="${empty ? "funnel__value--empty" : "funnel__value"}">${empty ? "нет данных" : fmt(s.value)}</span>
           </div>
-          <div class="${empty ? "funnel__value--empty" : "funnel__value"}">${empty ? "нет данных" : fmt(s.value)}</div>
+          <div class="funnel__bar-wrap">
+            <div class="funnel__bar ${empty ? "funnel__bar--empty" : ""}" style="width:${width}%"></div>
+          </div>
+          <div class="funnel__note">${notes.join(" · ")}</div>
         </div>
       `;
     }).join("");
@@ -89,6 +105,24 @@
         <div class="bn-card__why">${b.why}</div>
         <div class="bn-card__action"><strong>Первое действие:</strong> ${b.action}</div>
         <div class="card__footer">Источник: ${b.source}</div>
+      </article>
+    `).join("");
+  }
+
+  /* ---------- Problems ---------- */
+  function renderProblems() {
+    const host = $("#problems-grid");
+    if (!host) return;
+    host.innerHTML = D.problems.map((p) => `
+      <article class="card problem-card problem-card--${p.severity}">
+        <div class="problem-card__top">
+          <span class="chip chip--${p.severity === "critical" ? "critical" : p.severity === "high" ? "high" : "medium"}">${sevLabel[p.severity]}</span>
+          <span class="problem-card__channel">${p.channel}</span>
+        </div>
+        <h3 class="card__title">${p.title}</h3>
+        <div class="problem-card__metric">${p.metric}</div>
+        <div class="problem-card__why">${p.why}</div>
+        <div class="problem-card__action"><strong>Что делать:</strong> ${p.action}</div>
       </article>
     `).join("");
   }
@@ -152,113 +186,118 @@
     const svg = $("#chart-monthly");
     if (!svg) return;
     const data = D.monthly;
-    const W = 720, H = 260, padL = 48, padR = 16, padT = 16, padB = 36;
+    const W = 940, H = 360;
+    const padL = 72, padR = 82, padT = 40, padB = 66;
     const plotW = W - padL - padR, plotH = H - padT - padB;
-    const maxV = Math.max(...data.map((d) => d.visits));
-    const spends = data.map((d) => d.spend).filter((v) => v !== null);
-    const maxS = Math.max(...spends);
+    const maxV = niceMax(Math.max(...data.map((d) => d.visits)));
+    const spends = data.filter((d) => d.spend !== null).map((d) => d.spend);
+    const maxS = niceMax(Math.max(...spends, 1));
     const n = data.length;
     const step = plotW / n;
-    const barW = step * 0.55;
+    const barW = Math.min(52, step * 0.54);
+    const MONTHS = ["янв", "фев", "мар", "апр", "май", "июн", "июл", "авг", "сен", "окт", "ноя", "дек"];
+    const label = (m) => {
+      const parts = m.split("-");
+      return MONTHS[+parts[1] - 1] + " " + parts[0].slice(2);
+    };
 
-    let bars = "", line = "", dots = "", labels = "", grid = "";
-    // grid lines
-    for (let i = 0; i <= 4; i++) {
-      const y = padT + (plotH / 4) * i;
-      grid += `<line x1="${padL}" y1="${y}" x2="${W - padR}" y2="${y}" stroke="#eee" stroke-width="1"/>`;
-      const val = Math.round(maxV - (maxV / 4) * i);
-      grid += `<text x="${padL - 6}" y="${y + 4}" text-anchor="end" font-size="10" fill="#707070">${val.toLocaleString("ru-RU")}</text>`;
+    let out = "";
+    for (let i = 0; i <= 5; i++) {
+      const y = padT + (plotH / 5) * i;
+      out += `<line x1="${padL}" y1="${y}" x2="${W - padR}" y2="${y}" stroke="#ececec" stroke-width="1"/>`;
+      out += `<text x="${padL - 10}" y="${y + 4}" text-anchor="end" font-size="10" fill="#707070">${Math.round(maxV - (maxV / 5) * i).toLocaleString("ru-RU")}</text>`;
+      out += `<text x="${W - padR + 10}" y="${y + 4}" font-size="10" fill="#B26A00">${Math.round((maxS - (maxS / 5) * i) / 1000)}</text>`;
     }
+    out += `<text x="${padL}" y="${padT - 18}" font-size="10" fill="#707070">визиты</text>`;
+    out += `<text x="${W - padR}" y="${padT - 18}" text-anchor="end" font-size="10" fill="#B26A00">расход, тыс. ₽</text>`;
+
+    const firstNull = data.findIndex((d) => d.spend === null);
+    if (firstNull >= 0) {
+      const bx = padL + step * firstNull;
+      const bw = step * (n - firstNull);
+      out += `<rect x="${bx}" y="${padT}" width="${bw}" height="${plotH}" fill="#707070" opacity="0.06"/>`;
+      out += `<text x="${bx + bw / 2}" y="${padT + 16}" text-anchor="middle" font-size="10" fill="#707070">Директ: нет данных</text>`;
+    }
+
     data.forEach((d, i) => {
-      const x = padL + step * i + (step - barW) / 2;
-      const h = (d.visits / maxV) * plotH;
+      const cx = padL + step * i + step / 2;
+      const x = cx - barW / 2;
+      const h = Math.max((d.visits / maxV) * plotH, 3);
       const y = padT + plotH - h;
       const isCrash = d.m === "2026-03";
-      bars += `<rect x="${x}" y="${y}" width="${barW}" height="${h}" rx="3" fill="${isCrash ? "#B3261E" : "#97242B"}" opacity="${isCrash ? 1 : 0.75}"><title>${d.m}: ${d.visits.toLocaleString("ru-RU")} визитов</title></rect>`;
-      if (d.spend !== null) {
-        const sx = padL + step * i + step / 2;
-        const sy = padT + plotH - (d.spend / maxS) * plotH;
-        if (i > 0 && data[i - 1].spend !== null) {
-          const px = padL + step * (i - 1) + step / 2;
-          const py = padT + plotH - (data[i - 1].spend / maxS) * plotH;
-          line += `<line x1="${px}" y1="${py}" x2="${sx}" y2="${sy}" stroke="#B26A00" stroke-width="2"/>`;
-        }
-        dots += `<circle cx="${sx}" cy="${sy}" r="3" fill="#B26A00"><title>${d.m}: ${Math.round(d.spend).toLocaleString("ru-RU")} ₽</title></circle>`;
-      }
-      const lbl = d.m.slice(5) + "." + d.m.slice(2, 4);
-      labels += `<text x="${padL + step * i + step / 2}" y="${H - 12}" text-anchor="middle" font-size="10" fill="#707070">${lbl}</text>`;
+      out += `<rect x="${x}" y="${y}" width="${barW}" height="${h}" rx="3" fill="${isCrash ? "#B3261E" : "#97242B"}" opacity="${isCrash ? 1 : 0.78}"><title>${label(d.m)}: ${d.visits.toLocaleString("ru-RU")} визитов</title></rect>`;
+      out += `<text x="${cx}" y="${y - 7}" text-anchor="middle" font-size="9.5" font-weight="700" fill="${isCrash ? "#B3261E" : "#1F2328"}">${d.visits.toLocaleString("ru-RU")}</text>`;
+      out += `<text x="${cx}" y="${H - padB + 22}" text-anchor="middle" font-size="10" fill="#707070">${label(d.m)}</text>`;
     });
-    // spend axis (right)
-    let rightAxis = "";
-    for (let i = 0; i <= 4; i++) {
-      const y = padT + (plotH / 4) * i;
-      const val = Math.round(maxS - (maxS / 4) * i);
-      rightAxis += `<text x="${W - padR + 6}" y="${y + 4}" font-size="9" fill="#B26A00">${(val / 1000).toFixed(0)}k</text>`;
-    }
-    svg.innerHTML = `
-      ${grid}${bars}${line}${dots}${labels}${rightAxis}
-      <text x="${padL}" y="${padT - 4}" font-size="10" fill="#97242B">визиты</text>
-      <text x="${W - padR}" y="${padT - 4}" text-anchor="end" font-size="10" fill="#B26A00">расход ₽</text>
-    `;
-    // crash annotation
+
+    data.forEach((d, i) => {
+      if (d.spend === null) return;
+      const sx = padL + step * i + step / 2;
+      const sy = padT + plotH - (d.spend / maxS) * plotH;
+      const prev = i > 0 ? data[i - 1] : null;
+      if (prev && prev.spend !== null) {
+        const px = padL + step * (i - 1) + step / 2;
+        const py = padT + plotH - (prev.spend / maxS) * plotH;
+        out += `<line x1="${px}" y1="${py}" x2="${sx}" y2="${sy}" stroke="#B26A00" stroke-width="2.2"/>`;
+      }
+      out += `<circle cx="${sx}" cy="${sy}" r="3.5" fill="${d.spend === 0 ? "#fff" : "#B26A00"}" stroke="#B26A00" stroke-width="1.5"><title>${label(d.m)}: ${Math.round(d.spend).toLocaleString("ru-RU")} ₽</title></circle>`;
+    });
+
     const crash = data.findIndex((d) => d.m === "2026-03");
     if (crash >= 0) {
       const cx = padL + step * crash + step / 2;
-      svg.innerHTML += `<text x="${cx}" y="${padT + 14}" text-anchor="middle" font-size="10" fill="#B3261E" font-weight="700">−67,8%</text>`;
+      const yTop = padT + plotH - Math.max((data[crash].visits / maxV) * plotH, 3);
+      out += `<line x1="${cx}" y1="${yTop - 12}" x2="${cx}" y2="${yTop - 30}" stroke="#B3261E" stroke-width="1.2"/>`;
+      out += `<text x="${cx}" y="${yTop - 36}" text-anchor="middle" font-size="10.5" font-weight="700" fill="#B3261E">−67,8%</text>`;
     }
+
+    svg.innerHTML = out;
   }
 
   function sourcesChart() {
     const svg = $("#chart-sources");
-    if (!svg) return;
-    const data = D.sources;
-    const W = 720, rowH = 26, padL = 150, padR = 60, padT = 8;
-    const max = Math.max(...data.map((d) => d.value));
-    const H = data.length * rowH + padT + 8;
-    svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
-    let out = "";
-    data.forEach((d, i) => {
-      const y = padT + i * rowH;
-      const w = (d.value / max) * (W - padL - padR);
-      out += `<text x="${padL - 8}" y="${y + 14}" text-anchor="end" font-size="11" fill="#1F2328">${d.name}</text>`;
-      out += `<rect x="${padL}" y="${y + 2}" width="${w}" height="16" rx="3" fill="#97242B" opacity="0.75"><title>${d.name}: ${d.value.toLocaleString("ru-RU")} (${d.share}%)</title></rect>`;
-      out += `<text x="${padL + w + 6}" y="${y + 14}" font-size="11" fill="#707070">${d.value.toLocaleString("ru-RU")} · ${d.share}%</text>`;
+    if (!svg || !window.GIKOM) return;
+    GIKOM.hbars(svg, {
+      width: 620, rowH: 46, padL: 200, padR: 150, padT: 6, padB: 6,
+      rows: D.sources.map((s) => ({
+        label: s.name,
+        sub: s.note || "",
+        value: s.value,
+        valueLabel: fmt(s.value) + " · " + s.share + "%",
+        opacity: s.name === "Переходы по рекламе" ? 0.95 : 0.55
+      }))
     });
-    svg.innerHTML = out;
   }
 
   function devicesChart() {
     const svg = $("#chart-devices");
-    if (!svg) return;
-    const data = D.devices;
-    const cx = 110, cy = 110, r = 80, inner = 52;
-    const total = data.reduce((a, b) => a + b.value, 0);
-    let angle = -Math.PI / 2;
-    const colors = ["#97242B", "#1F5FBF", "#B26A00"];
-    let paths = "";
-    data.forEach((d, i) => {
-      const frac = d.value / total;
-      const a2 = angle + frac * Math.PI * 2;
-      const large = frac > 0.5 ? 1 : 0;
-      const x1 = cx + r * Math.cos(angle), y1 = cy + r * Math.sin(angle);
-      const x2 = cx + r * Math.cos(a2), y2 = cy + r * Math.sin(a2);
-      const xi1 = cx + inner * Math.cos(angle), yi1 = cy + inner * Math.sin(angle);
-      const xi2 = cx + inner * Math.cos(a2), yi2 = cy + inner * Math.sin(a2);
-      paths += `<path d="M ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2} L ${xi2} ${yi2} A ${inner} ${inner} 0 ${large} 0 ${xi1} ${yi1} Z" fill="${colors[i]}" opacity="0.85"><title>${d.name}: ${d.value.toLocaleString("ru-RU")} (${d.share}%)</title></path>`;
-      angle = a2;
+    if (!svg || !window.GIKOM) return;
+    GIKOM.donut(svg, {
+      width: 620, height: 320, cx: 150, cy: 160, r: 100, inner: 62,
+      centerValue: fmt(44221), centerLabel: "визитов",
+      legendRow: 52,
+      rows: D.devices.map((d, i) => ({
+        label: d.name,
+        value: d.value,
+        note: "отказы " + (d.bounce * 100).toFixed(1) + "%",
+        color: ["#97242B", "#1F5FBF", "#B26A00"][i]
+      }))
     });
-    // legend
-    let legend = "";
-    data.forEach((d, i) => {
-      const y = 20 + i * 26;
-      legend += `<rect x="230" y="${y}" width="12" height="12" rx="3" fill="${colors[i]}" opacity="0.85"/>`;
-      legend += `<text x="248" y="${y + 11}" font-size="12" fill="#1F2328">${d.name} — ${d.share}%</text>`;
-      legend += `<text x="248" y="${y + 24}" font-size="10" fill="#707070">${d.value.toLocaleString("ru-RU")} визитов · отказы ${(d.bounce * 100).toFixed(1)}%</text>`;
+  }
+
+  function campaignsChart() {
+    const svg = $("#chart-campaigns");
+    if (!svg || !window.GIKOM) return;
+    GIKOM.hbars(svg, {
+      width: 620, rowH: 50, padL: 250, padR: 150, padT: 6, padB: 6,
+      rows: D.directCampaigns.map((c) => ({
+        label: c.name,
+        sub: c.sub,
+        value: c.spend,
+        valueLabel: fmt(c.spend) + " ₽ · " + c.share + "%",
+        opacity: c.name === "Прочие кампании" ? 0.45 : 0.85
+      }))
     });
-    // iphone callout
-    legend += `<text x="230" y="${20 + data.length * 26 + 16}" font-size="12" fill="#B3261E" font-weight="700">iPhone: ${D.iphone.value.toLocaleString("ru-RU")} визитов</text>`;
-    legend += `<text x="230" y="${20 + data.length * 26 + 32}" font-size="11" fill="#707070">отказы ${(D.iphone.bounce * 100).toFixed(1)}% · глубина ${D.iphone.depth} · ${D.iphone.time}</text>`;
-    svg.innerHTML = paths + legend;
   }
 
   /* ---------- Nav active ---------- */
@@ -291,8 +330,14 @@
     const burger = $(".burger");
     const nav = $(".mobile-nav");
     if (!burger || !nav) return;
-    burger.addEventListener("click", () => nav.classList.toggle("is-open"));
-    $$(".mobile-nav a").forEach((a) => a.addEventListener("click", () => nav.classList.remove("is-open")));
+    burger.addEventListener("click", () => {
+      const open = nav.classList.toggle("is-open");
+      burger.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    $$(".mobile-nav a").forEach((a) => a.addEventListener("click", () => {
+      nav.classList.remove("is-open");
+      burger.setAttribute("aria-expanded", "false");
+    }));
   }
 
   /* ---------- Progress ---------- */
@@ -304,21 +349,6 @@
       const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
       bar.style.width = pct + "%";
     }, { passive: true });
-  }
-
-  /* ---------- Theme ---------- */
-  function initTheme() {
-    const btn = $("#theme-toggle");
-    const apply = (t) => document.documentElement.setAttribute("data-theme", t);
-    const saved = localStorage.getItem("gikom-theme");
-    if (saved) apply(saved);
-    if (btn) btn.addEventListener("click", () => {
-      const cur = document.documentElement.getAttribute("data-theme") || "light";
-      const next = cur === "light" ? "dark" : "light";
-      apply(next);
-      localStorage.setItem("gikom-theme", next);
-      btn.textContent = next === "light" ? "Тёмная" : "Светлая";
-    });
   }
 
   /* ---------- Bottleneck filter ---------- */
@@ -340,6 +370,7 @@
     renderFunnel();
     renderChannels();
     renderBottlenecks("all");
+    renderProblems();
     renderGrowth();
     renderRoadmap();
     renderGaps();
@@ -347,11 +378,11 @@
     monthlyChart();
     sourcesChart();
     devicesChart();
+    campaignsChart();
     initNav();
     initReveal();
     initMobile();
     initProgress();
-    initTheme();
     initFilter();
     initPrint();
   }

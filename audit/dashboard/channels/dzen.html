@@ -19,6 +19,38 @@
     <h1 style="font-size:30px;font-weight:900;margin-bottom:8px">Аудит канала Дзен</h1>
     <p style="color:var(--muted);margin-bottom:24px">Режим «Всё время», ~11.12.2024–06.11.2026 · скриншот аудитории</p>
 
+    <div class="section-head" style="margin-top:40px">
+      <h2>Визуализация</h2>
+      <p style="color:var(--muted);font-size:14px;max-width:760px">Источники, устройства и ОС по данным Дзена. Выборка малая, поэтому доли следует читать как ориентир, а не как точную демографию.</p>
+    </div>
+    <div class="viz-grid">
+      <div class="chart chart--wide">
+        <div class="chart__head"><div>
+          <div class="chart__title">Источники переходов</div>
+          <div class="chart__note">Лента Дзена и «Другие источники» дают по 44,3%. Почти половина переходов не атрибутирована — это ключевая проблема канала.</div>
+        </div></div>
+        <svg id="dz-sources" viewBox="0 0 900 360" role="img" aria-label="Источники переходов Дзена"></svg>
+        <div class="chart__foot">Источник: data/dzen/audit-dzen.xlsx · скриншот статистики</div>
+      </div>
+      <div class="chart">
+        <div class="chart__head"><div>
+          <div class="chart__title">Устройства</div>
+          <div class="chart__note">ПК — 55%, смартфоны — 45%. По скриншоту; малая выборка.</div>
+        </div></div>
+        <svg id="dz-devices" viewBox="0 0 620 300" role="img" aria-label="Устройства Дзена"></svg>
+        <div class="chart__callout"><strong>Выборка:</strong> ~54 наблюдения. Пол и возраст показаны как 100% — артефакт малой выборки.</div>
+        <div class="chart__foot">Источник: data/dzen/audit-dzen.xlsx · скриншот статистики</div>
+      </div>
+      <div class="chart">
+        <div class="chart__head"><div>
+          <div class="chart__title">Операционные системы</div>
+          <div class="chart__note">Android — 45%, macOS — 29%, Windows — 26%. Доли по скриншоту, не по полной выгрузке.</div>
+        </div></div>
+        <svg id="dz-os" viewBox="0 0 620 300" role="img" aria-label="Операционные системы"></svg>
+        <div class="chart__foot">Источник: data/dzen/audit-dzen.xlsx · скриншот статистики</div>
+      </div>
+    </div>
+
     <div class="section-head"><h2>Источники переходов</h2></div>
     <div class="card">
       <table style="width:100%;border-collapse:collapse;font-size:14px">
@@ -82,5 +114,41 @@
 
     <p style="margin-top:24px;font-size:12px;color:var(--muted)">Источник: data/dzen/audit-dzen.xlsx</p>
   </main>
+
+  <script src="../js/charts.js"></script>
+  <script>
+    (function () {
+      GIKOM.hbars(document.getElementById("dz-sources"), {
+        width: 900, rowH: 44, padL: 240, padR: 120,
+        rows: [
+          { label: "Лента Дзена", value: 44.3, valueLabel: "44,3%", opacity: 0.95 },
+          { label: "Другие источники", value: 44.3, valueLabel: "44,3%", opacity: 0.75 },
+          { label: "Поисковые системы", value: 10.1, valueLabel: "10,1%", opacity: 0.6 },
+          { label: "Лента Mail.ru", value: 1.3, valueLabel: "1,3%", opacity: 0.4 },
+          { label: "Рекомендации", value: 0, valueLabel: "0%", opacity: 0.2 },
+          { label: "Подписки", value: 0, valueLabel: "0%", opacity: 0.2 },
+          { label: "Поиск в Дзене", value: 0, valueLabel: "0%", opacity: 0.2 }
+        ]
+      });
+
+      GIKOM.donut(document.getElementById("dz-devices"), {
+        width: 620, height: 300, cx: 150, cy: 150, r: 92, inner: 58,
+        centerValue: "100%", centerLabel: "визитов",
+        rows: [
+          { label: "ПК", value: 55, color: "#1F5FBF" },
+          { label: "Смартфоны", value: 45, color: "#97242B" }
+        ]
+      });
+
+      GIKOM.hbars(document.getElementById("dz-os"), {
+        width: 620, rowH: 50, padL: 150, padR: 100, max: 50, unit: "%",
+        rows: [
+          { label: "Android", value: 45, valueLabel: "45%", opacity: 0.95 },
+          { label: "macOS", value: 29, valueLabel: "29%", opacity: 0.7 },
+          { label: "Windows", value: 26, valueLabel: "26%", opacity: 0.55 }
+        ]
+      });
+    })();
+  </script>
 </body>
 </html>
